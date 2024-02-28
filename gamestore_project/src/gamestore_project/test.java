@@ -7,7 +7,8 @@ public class test {
 		System.out.print("hi");
 		System.out.print("hi ana almaha");
 		System.out.print("hi ana Ghaida");
-		System.out.print("hi ana eman");
+		System.out.print("hi ana emano");
+		System.out.println("hi");
 
 
 	}
