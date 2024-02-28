@@ -1,1 +1,1 @@
-# Game-Store-java2
+# Game-Store-Project
