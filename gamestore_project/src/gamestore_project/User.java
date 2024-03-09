@@ -16,7 +16,7 @@ public User(String n,int size, double wallet){
 }
 
 public boolean buyGame(Game g) { //*** I may need too cast g and make cases for each child of games but this is the basic idea***
-	if (g.priceAfterDiscount() <= wallet) {//also I need to check if game exists in library**
+	if (g.priceAfterDiscount() <= wallet) {//also I need to check if game exists in library..**
 		gameLibrary[nOfg++]=g;
 		wallet = wallet - g.priceAfterDiscount();
 		return true;
