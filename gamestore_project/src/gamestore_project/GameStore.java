@@ -17,9 +17,9 @@ noGames =0; }
 public void addUser(User u){
 for(int i=0; i<noUsers ;i++){   
    if (userList[i] == u){            // to check if the user is already exist in the array or not , because we dont want to add a user twice.                                                               
-      System.out.println("can  not add user because it's already exist in Game Stors");
+      System.out.println("can  not add user because it's already exist in Game Store");
       return ;}
-   if (userList[i].getUsername().equals(u.getUsername()) ) {    //to check the uniqness of username.
+   if (userList[i].getUsername().equals(u.getUsername()) ) {    //to check the uniqueness of username.
        System.out.println("can not add user ,the username is used by another user please try another one");
        return;}}
 if(noUsers < userList.length ){
