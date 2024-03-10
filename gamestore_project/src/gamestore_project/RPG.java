@@ -1,5 +1,5 @@
 package gamestore_project;
 
-public class Horror extends Game{
+public class RPG extends Game{
 
 }
