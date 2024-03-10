@@ -51,7 +51,7 @@ public User findUser(String username ){
   return null ;}
   
 
-public boolean checkGame(String name) 
+private boolean checkGame(String name) 
 {  
    for(int i=0; i<noGames ;i++)
       if (gameList[i].getName().equals(name))
@@ -60,60 +60,23 @@ public boolean checkGame(String name)
 		
 }
 
-public void addRPG(String name, String publisher,double price)
-{ 
+public void addGame(Game g) { 
     if(checkGame(name)){
    if(noGames<gameList.length){
-      gameList[noGames++] = new RPG(name,publisher,price) ;
+      if(g instanceof Detective)
+    	  gameList[noGames++] = new Detective(g);
+      else if(g instanceof RPG)
+    	  gameList[noGames++] = new RPG(g);
+      else if(g instanceof StoryRich)
+    	  gameList[noGames++] = new StoryRich(g);
+      else if(g instanceof Horror)
+    	  gameList[noGames++] = new Horror(g);
+      else if(g instanceof Survival)
+    	  gameList[noGames++] = new Survival(g);
       System.out.println("the Game was added successfully :) ");}
-    else System.out.println("can not add Game -the array is full- :( ");}
-		
-}
-
-public void addsurvival(String name, String publisher,double price)
-{
    
-   if(checkGame(name)){
-      if(noGames<gameList.length){
-         gameList[noGames++] = new Survival(name,publisher,price) ;
-         System.out.println("the Game was added successfully :) ");}
-       else System.out.println("can not add Game -the array is full- :( ");}
-         
+   else System.out.println("can not add Game -the array is full- :( ");}	
 }
-
-public void adddetective(String name, String publisher,double price)
-{
-  
-   if(checkGame(name)){
-      if(noGames<gameList.length){
-         gameList[noGames++] = new Detective(name,publisher,price) ;
-         System.out.println("the Game was added successfully :) ");}
-       else System.out.println("can not add Game -the array is full- :( ");}
-         
-}
-
-public void addhorror(String name, String publisher,double price)
-{
-   
-   if(checkGame(name)){
-      if(noGames<gameList.length){
-         gameList[noGames++] = new Horror(name,publisher,price) ;
-         System.out.println("the Game was added successfully :) ");}
-       else System.out.println("can not add Game -the array is full- :( ");}
-         
-}
-
-public void addstoryrich(String name, String publisher,double price)
-{
-
-   if(checkGame(name)){
-      if(noGames<gameList.length){
-         gameList[noGames++] = new StoryRich(name,publisher,price) ;
-         System.out.println("the Game was added successfully :) ");}
-       else System.out.println("can not add Game -the array is full- :( ");}
-         
-}
-
 
 
 public boolean removeGame(String name) {

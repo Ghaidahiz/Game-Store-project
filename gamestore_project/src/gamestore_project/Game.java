@@ -23,4 +23,8 @@ public abstract class Game {
 	{
 		return publisher;
 	}
+	
+	public double getPrice() {
+		return price;
+	}
 }
