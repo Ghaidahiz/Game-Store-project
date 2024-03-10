@@ -27,4 +27,8 @@ public abstract class Game {
 	public double getPrice() {
 		return price;
 	}
+	
+	public String toString () {
+		return "Game name: "+name+"\nGame publisher: "+publisher+"\nGame price: "+price+"\n";
+	}
 }
