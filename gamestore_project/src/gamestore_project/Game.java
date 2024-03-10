@@ -1,5 +1,5 @@
 package gamestore_project;
-public absract class Game {
+public abstract class Game {
 	
 	protected String name;
 	protected String publisher;
@@ -12,10 +12,15 @@ public absract class Game {
 		this.price=price;
 	}
 	
-	public abstract double priceAfterDiscount(double p);
+	public abstract double priceAfterDiscount();
 
 	public String getName()
 	{
 		return name;
+	}
+
+	public String getPublisher()
+	{
+		return publisher;
 	}
 }

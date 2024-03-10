@@ -1,9 +1,13 @@
 package gamestore_project;
 public class Detective extends Game{
 	
-	public double priceAfterDiscount(double p)
+	public Detective(String name, String publisher, double price) {
+		super(name, publisher, price);
+	}
+
+	public double priceAfterDiscount()
 	{
-		return p*0.15;
+		return super.price*0.15;
 	}
 
 }

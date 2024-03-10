@@ -2,8 +2,12 @@ package gamestore_project;
 
 public class Survival extends Game{
 
-	public double priceAfterDiscount(double p)
+	public Survival(String name, String publisher, double price) {
+		super(name, publisher, price);
+	}
+
+	public double priceAfterDiscount()
 	{
-		return p*0.40;
+		return super.price*0.40;
 	}
 }

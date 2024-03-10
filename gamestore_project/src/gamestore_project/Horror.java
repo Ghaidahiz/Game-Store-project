@@ -2,9 +2,13 @@ package gamestore_project;
 
 public class Horror extends Game{
 	
-	public double priceAfterDiscount(double p)
+	public Horror(String name, String publisher, double price) {
+		super(name, publisher, price);
+	}
+
+	public double priceAfterDiscount()
 	{
-		return p*0.30;
+		return super.price*0.30;
 	}
 
 

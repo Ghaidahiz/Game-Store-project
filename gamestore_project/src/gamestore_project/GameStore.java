@@ -1,6 +1,7 @@
 package gamestore_project;
 
-public class GameStore {private String name;
+public class GameStore {
+private String name;
 private User[] userList;
 private Game[] gameList;
 private int noUsers;
@@ -50,18 +51,70 @@ public User findUser(String username ){
   return null ;}
   
 
-public boolean addGame(String name, String publisher,double price) 
-{      for(int i=0; i<noGames ;i++){ 
-	   if (gameList[i].getName().equals(name))
-	   {            // to check if the Game is already exist in the array or not , because we dont want to add a Game twice.                                                               
-		      System.out.println("can  not add Game because it's already exist in Game Store");
-		      return ;}
-		if(noGames<gameList.length){
-		  gameList[noGames++] = new Game(name,publisher,price) ;
-		  System.out.println("the Game was added successfully :) ");}
-		else System.out.println("can not add Game -the array is full- :( ");
-		}
+public boolean checkGame(String name) 
+{  
+   for(int i=0; i<noGames ;i++)
+      if (gameList[i].getName().equals(name))
+      return false;
+       return true;
+		
 }
+
+public void addRPG(String name, String publisher,double price)
+{ 
+    if(checkGame(name)){
+   if(noGames<gameList.length){
+      gameList[noGames++] = new RPG(name,publisher,price) ;
+      System.out.println("the Game was added successfully :) ");}
+    else System.out.println("can not add Game -the array is full- :( ");}
+		
+}
+
+public void addsurvival(String name, String publisher,double price)
+{
+   
+   if(checkGame(name)){
+      if(noGames<gameList.length){
+         gameList[noGames++] = new Survival(name,publisher,price) ;
+         System.out.println("the Game was added successfully :) ");}
+       else System.out.println("can not add Game -the array is full- :( ");}
+         
+}
+
+public void adddetective(String name, String publisher,double price)
+{
+  
+   if(checkGame(name)){
+      if(noGames<gameList.length){
+         gameList[noGames++] = new Detective(name,publisher,price) ;
+         System.out.println("the Game was added successfully :) ");}
+       else System.out.println("can not add Game -the array is full- :( ");}
+         
+}
+
+public void addhorror(String name, String publisher,double price)
+{
+   
+   if(checkGame(name)){
+      if(noGames<gameList.length){
+         gameList[noGames++] = new Horror(name,publisher,price) ;
+         System.out.println("the Game was added successfully :) ");}
+       else System.out.println("can not add Game -the array is full- :( ");}
+         
+}
+
+public void addstoryrich(String name, String publisher,double price)
+{
+
+   if(checkGame(name)){
+      if(noGames<gameList.length){
+         gameList[noGames++] = new StoryRich(name,publisher,price) ;
+         System.out.println("the Game was added successfully :) ");}
+       else System.out.println("can not add Game -the array is full- :( ");}
+         
+}
+
+
 
 public boolean removeGame(String name) {
 	boolean exist= false; int i;
@@ -72,19 +125,21 @@ public boolean removeGame(String name) {
 	if(exist){
 	  gameList[i]=gameList[noGames--] ;
 	  gameList[noGames]=null;
-	  System.out.println("the Game -"+name+"- was removed successfully");}
-	else System.out.println (" remove fail -can not find Game with this name: "+name+" -");}    
+	  System.out.println("the Game -"+name+"- was removed successfully");
+   return true;}
+	else System.out.println (" remove fail -can not find Game with this name: "+name+" -");
+return false;}    
 	   
-}
+
 
 public Game searchForGame(String name) {
 	
 	for(int i =0 ; i< noGames ;i++)
-	if(gameList[i].getName.equals(name) )
+	if(gameList[i].getName().equals(name) )
 		return gameList[i];
 	else
-		(System.out.println("SORRY, GAME IS NOT FOUND");)
-	
+		System.out.println("SORRY, GAME IS NOT FOUND \n try this instead !");
+	return gameList[(int)Math.random()*noGames];
 }
  
 public Game[] searchForGamepub ( String publisher ){
