@@ -50,11 +50,42 @@ public User findUser(String username ){
   return null ;}
   
 
-public boolean addGame(String name, String publisher,double price) {}
+public boolean addGame(String name, String publisher,double price) 
+{      for(int i=0; i<noGames ;i++){ 
+	   if (gameList[i].getName().equals(name))
+	   {            // to check if the Game is already exist in the array or not , because we dont want to add a Game twice.                                                               
+		      System.out.println("can  not add Game because it's already exist in Game Store");
+		      return ;}
+		if(noGames<gameList.length){
+		  gameList[noGames++] = new Game(name,publisher,price) ;
+		  System.out.println("the Game was added successfully :) ");}
+		else System.out.println("can not add Game -the array is full- :( ");
+		}
+}
 
-public boolean removeGame(String name) {}
+public boolean removeGame(String name) {
+	boolean exist= false; int i;
+	for(i=0; i<noGames; i++)
+	   if(gameList[i].getName().equals(name) ){
+	     exist =true;
+	     break;}
+	if(exist){
+	  gameList[i]=gameList[noGames--] ;
+	  gameList[noGames]=null;
+	  System.out.println("the Game -"+name+"- was removed successfully");}
+	else System.out.println (" remove fail -can not find Game with this name: "+name+" -");}    
+	   
+}
 
-public Game searchForGame(String name) {}
+public Game searchForGame(String name) {
+	
+	for(int i =0 ; i< noGames ;i++)
+	if(gameList[i].getName.equals(name) )
+		return gameList[i];
+	else
+		(System.out.println("SORRY, GAME IS NOT FOUND");)
+	
+}
  
 public Game[] searchForGamepub ( String publisher ){
  int counter=0, x=0;
