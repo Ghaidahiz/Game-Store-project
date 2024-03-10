@@ -98,10 +98,10 @@ public Game searchForGame(String name) {
 	for(int i =0 ; i< noGames ;i++)
 	if(gameList[i].getName().equals(name) )
 		return gameList[i];
-	else {
-		System.out.println("cant not find game with the received name :(");
-		return null;
-        }
+	
+   System.out.println("cant not find game with the received name :(");
+	  return null;
+        
 }
     
      

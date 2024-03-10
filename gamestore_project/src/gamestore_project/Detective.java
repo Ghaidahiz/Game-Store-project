@@ -5,7 +5,7 @@ public class Detective extends Game{
 		super(name, publisher, price);
 	}
 	
-	public Detective(Game g) {
+	public Detective (Game g) {
 		super(g.getName(), g.getPublisher(), g.getPrice());
 	}
 
