@@ -2,15 +2,13 @@ package gamestore_project;
 
 public class GameStore {
 private String name;
-private User[] userList;
-private Game[] gameList;
+private User[] userList=new User[50];
+private Game[] gameList=new Game [50];
 private int noUsers;
 private int noGames;
 
-public GameStore(String name, int users, int games){
+public GameStore(String name){
 this.name=name;
-userList = new User[users];
-gameList = new Game[games];
 noUsers =0;
 noGames =0; }
 
@@ -100,10 +98,13 @@ public Game searchForGame(String name) {
 	for(int i =0 ; i< noGames ;i++)
 	if(gameList[i].getName().equals(name) )
 		return gameList[i];
-	else
-		System.out.println("SORRY, GAME IS NOT FOUND \n try this instead !");
-	return gameList[(int)Math.random()*noGames];
+	else {
+		System.out.println("cant not find game with the received name :(");
+		return null;
+        }
 }
+    
+     
  
 public Game[] searchForGamepub ( String publisher ){
  int counter=0, x=0;

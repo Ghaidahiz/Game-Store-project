@@ -4,18 +4,19 @@ public class User {
 private String username;
 private int nOfg; //number of games
 private double wallet;
-private Game[] gameLibrary;
+private Game[] gameLibrary = new Game[50];
 
 
-public User(String n,int size, double wallet){
+public User(String n, double wallet){
 	username =n;
 	nOfg=0;
 	this.wallet=wallet;
-	gameLibrary= new Game[size];//idk about dat
 	
 }
 
-public boolean buyGame(Game g) { //*** I may need too cast g and make cases for each child of games but this is the basic idea***
+public boolean buyGame(Game g) {//*** I may need too cast g and make cases for each child of games but this is the basic idea***
+	if(g==null)
+		return false;
 	if (g.priceAfterDiscount() <= wallet) {//also I need to check if game exists in library**
 		gameLibrary[nOfg++]=g;
 		wallet = wallet - g.priceAfterDiscount();
@@ -29,6 +30,9 @@ public boolean buyGame(Game g) { //*** I may need too cast g and make cases for 
 
 
 public boolean sendGift(User friend , Game g) {
+	if (g==null || friend==null)
+		return false;
+	
 	if (g.priceAfterDiscount() <= wallet ) {
 		friend.gameLibrary[friend.nOfg++]=g;
 		this.wallet = this.wallet - g.priceAfterDiscount();
