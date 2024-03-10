@@ -41,7 +41,7 @@ public boolean sendGift(User friend , Game g) {
 
 public boolean uninstallGame(String name) {
 	for(int i = 0; i<nOfg;i++) {
-		if(gameLibrary[i].name.equalsIgnoreCase(name)) {
+		if(gameLibrary[i].getName().equalsIgnoreCase(name)) {
 			gameLibrary[i]=gameLibrary[nOfg-1];
 			gameLibrary[--nOfg]=null;
 			return true;
