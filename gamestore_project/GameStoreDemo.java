@@ -72,7 +72,7 @@ public class GameStoreDemo {
                 case 4:
                     System.out.println("ENTER THE NAME OF THE GAME YOU WANT TO FIND IN YOUR LIBRARY ..");
                     Gname = sc.nextLine();
-                    (GEA.findUser(name)).findGame(Gname);
+                    System.out.println((GEA.findUser(name)).findGame(Gname));
                     break;
 
                 case 5:
