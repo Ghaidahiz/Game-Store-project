@@ -120,19 +120,6 @@ public Game searchForGame(String name) {
         
 }
     
-     
- 
-public Game[] searchForGamepub ( String publisher ){
- int counter=0, x=0;
-for (int i=0; i < noGames; i++)
-     if( gameList[i].getPublisher().equalsIgnoreCase(publisher) ) 
-        counter++;
-Game [] game = new Game[counter];
-for (int i=0; i < noGames; i++)
-    if( gameList[i].getPublisher().equalsIgnoreCase(publisher) ) 
-       game[x++]= gameList[i];
-return game; }
-
 public Game[] getGameList() { return gameList ;}
 
 public int getNoUsers() {return noUsers;}
@@ -198,6 +185,51 @@ return RPGgame;}
    }
    public Admin[] getAdminList() {
        return adminList;
+   }
+
+   public void displayGames(int selection) {
+      
+      switch(selection) {
+      case 1:
+         System.out.println("this is all games in GEA STORE:\n--------------");
+          for (int i=0; i<noGames; i++)
+            System.out.println(gameList[i]);
+           break;
+              
+       case 2:	
+          System.out.println("this is all games of type RPG in GEA STORE:\n--------------");
+          Game[] RPGGame= getRPG();
+          for (int i=0; i<RPGGame.length; i++)
+            System.out.println(RPGGame[i]);
+           break;
+           
+       case 3:
+          System.out.println("these are all games of type Detective in GEA STORE:\n--------------");
+          Game[] DetectiveGame= getDetective();
+          for (int i=0; i<DetectiveGame.length; i++)
+          System.out.println(DetectiveGame[i]);
+           break;
+           
+       case 4: 
+          System.out.println("this is all games of type Horror in GEA STORE:\n--------------");
+          Game[] HorrorGame= getHorror();
+          for (int i=0; i<HorrorGame.length; i++)
+          System.out.println(HorrorGame[i]);
+           break;
+           
+       case 5: 
+          System.out.println("this is all games of type Story Rich in GEA STORE:\n--------------");
+          Game[] SRGame= getStoryRich();
+          for (int i=0; i<SRGame.length; i++)
+          System.out.println(SRGame[i]);
+           break;
+          
+       case 6:
+          System.out.println("this is all games of type Survival in GEA STORE:\n--------------");
+          Game[] SurvivalGame= getSurvival();
+          for (int i=0; i<SurvivalGame.length; i++)
+          System.out.println(SurvivalGame[i]);
+           break; }    
    }
 
 }
