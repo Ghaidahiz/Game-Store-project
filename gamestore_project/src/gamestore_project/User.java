@@ -17,7 +17,7 @@ public class User {
 		if (g == null) {
 			System.out.println("the game that you want to purchase doesn't exist in this gamestore");
 		}
-		if (g.priceAfterDiscount() <= wallet) {
+		else if (g.priceAfterDiscount() <= wallet) {
 			gameLibrary[numberOfGames++] = g;
 			wallet = wallet - g.priceAfterDiscount();
 		} else {
@@ -52,7 +52,7 @@ public class User {
 			}
 
 		}
-		System.out.println(name + "doesn't exist in your llibrary");
+		System.out.println(name + " doesn't exist in your library");
 		return;
 
 	}
@@ -60,10 +60,12 @@ public class User {
 	public Game findGame(String name) {
 		for (int i = 0; i < numberOfGames; i++) {
 			if (gameLibrary[i].getName().equalsIgnoreCase(name)) {
+				System.out.println(name + " exists in your library");
 				return gameLibrary[i];
 			}
 
 		}
+		System.out.println(name + " doesn't exist in your library");
 		return null; // if game is not found
 
 	}

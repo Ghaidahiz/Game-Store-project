@@ -18,18 +18,19 @@ public class GameStoreDemo {
         GameStore GEA = new GameStore("GEA", Almaha, Eman, Ghaida);
 
         System.out.println("GEA GAME STORE");
-        int check=0;
+        int check = 0;
 
         do {
             System.out.println("ARE YOU A .. \n 1- USER? \n 2-ADMIN?");
             try {
                 check = sc.nextInt();
+                sc.nextLine();
 
             } catch (InputMismatchException e) {
-            System.out.println("PLEASE ENTER A DIGIT");
-            sc.next();
-            check=0;
-                }
+                System.out.println("PLEASE ENTER A DIGIT");
+                sc.next();
+                check = 0;
+            }
             User u1;
             if (check == 1) {
 
@@ -47,23 +48,25 @@ public class GameStoreDemo {
                     System.out.println("WELCOME BACK !");
                 }
                 int choice = 0;
+                do {
 
-                try {
-                    do {
+                    try {
                         System.out.println(" PLEASE SELECT NUMBER OF SERVICE THAT YOU WANT : ");
                         System.out.println(
                                 "1- BUY A GAME ? \n 2-SEND GIFT TO A FRIEND ? \n 3-UNINSTALL GAME ? \n 4- FIND GAME ? \n 5-SHOW ALL GAMES IN LIBRARY ? \n 6-SHOW GAMES OF GEA STORE ? \n 0-EXIT ?");
                         choice = sc.nextInt();
+                        sc.nextLine();
 
                         if (choice < 0 || choice > 6) {
                             System.out.println("INVALID INPUT , PLEASE ENTER A NUMBER BETWEEN 0 AND 6 ");
                         }
-                    } while (choice < 0 || choice > 6);
-                } catch (InputMismatchException e) {
-                    System.out.println("PLEASE ENTER A DIGIT");
-                    sc.next();
-                    choice = -1; // Set choice to -1 to continue loop
-                }
+                    } catch (InputMismatchException e) {
+                        System.out.println("PLEASE ENTER A DIGIT");
+                        sc.next();
+                        choice = -1; // Set choice to -1 to continue loop
+                    }
+                } while (choice < 0 || choice > 6);
+
                 switch (choice) {
                 case 1:
                     System.out.println("ENTER THE NAME OF THE GAME ..");
@@ -88,7 +91,7 @@ public class GameStoreDemo {
                 case 4:
                     System.out.println("ENTER THE NAME OF THE GAME YOU WANT TO FIND IN YOUR LIBRARY ..");
                     Gname = sc.nextLine();
-                    System.out.println((GEA.findUser(name)).findGame(Gname));
+                    GEA.findUser(name).findGame(Gname);
                     break;
 
                 case 5:
@@ -99,7 +102,7 @@ public class GameStoreDemo {
                     break;
 
                 case 6:
-                GEA.displayGames();
+                    GEA.displayGames();
                     break;
 
                 case 0:
@@ -114,7 +117,7 @@ public class GameStoreDemo {
                 while (isAdmin == false) {
 
                     System.out.println("PLEASE ENTER YOUR NAME :");
-                    name = sc.next();
+                    name = sc.nextLine();
 
                     for (int i = 0; i < GEA.getAdminList().length; i++) {
 
@@ -137,22 +140,24 @@ public class GameStoreDemo {
                 }
                 int choice = 0;
                 System.out.println("HELLO ADMIN " + name + " PLEASE SELECT THE SERVICE THAT YOU WANT ");
-                try {
-                    do {
+                do {
+
+                    try {
                         System.out.println(
                                 "1- ADD A GAME TO THE STORE ? \n 2- REMOVE A GAME FROM THE STORE ? \n 3- SEARCH FOR A GAME ? \n 4- DISPLAY GAMES ?");
                         choice = sc.nextInt();
+                        sc.nextLine();
 
                         if (choice < 0 || choice > 4) {
                             System.out.println("INVALID INPUT , PLEASE ENTER A NUMBER BETWEEN 0 AND 4 ");
                         }
-                    } while (choice < 0 || choice > 4);
-                } catch (InputMismatchException e) {
-                    System.out.println("PLEASE ENTER A DIGIT");
-                    sc.next();
-                    choice = -1; // Set choice to -1 to continue loop
 
-                }
+                    } catch (InputMismatchException e) {
+                        System.out.println("PLEASE ENTER A DIGIT");
+                        sc.next();
+                        choice = -1; // Set choice to -1 to continue loop
+                    }
+                } while (choice < 0 || choice > 4);
 
                 switch (choice) {
                 case 1:
@@ -163,23 +168,27 @@ public class GameStoreDemo {
                     String Gpub = sc.nextLine();
                     System.out.println("ENTER THE GAME'S PRICE");
                     double Gprice = sc.nextDouble();
+                    sc.nextLine();
 
-                    try {
-                        do {
+                    do {
+                        try {
                             System.out.println("ENTER THE GAME'S GENRE");
                             System.out.println(
                                     "1- Detective ? \n 2- Horror ? \n 3- RPG ? \n 4- Story-rich ? \n 5- Survival ?");
                             GGenre = sc.nextInt();
+                            sc.nextLine();
 
                             if (GGenre < 1 || GGenre > 5) {
                                 System.out.println("INVALID INPUT , PLEASE ENTER A NUMBER BETWEEN 0 AND 5 ");
                             }
-                        } while (GGenre < 1 || GGenre > 5);
-                    } catch (InputMismatchException e) {
-                        System.out.println("PLEASE ENTER A DIGIT");
-                        sc.next();
-                        GGenre = -1; // Set GGenre to -1 to continue loop
-                    }
+
+                        } catch (InputMismatchException e) {
+                            System.out.println("PLEASE ENTER A DIGIT");
+                            sc.next();
+                            GGenre = -1; // Set GGenre to -1 to continue loop
+                        }
+                    } while (GGenre < 1 || GGenre > 5);
+
                     switch (GGenre) {
                     case 1:
                         Game game = new Detective(Gname, Gpub, Gprice);
@@ -213,7 +222,7 @@ public class GameStoreDemo {
                     Gname = sc.nextLine();
                     GEA.searchForGame(Gname);
                     break;
-                case 4: 
+                case 4:
                     GEA.displayGames();
                     break;
                 }
