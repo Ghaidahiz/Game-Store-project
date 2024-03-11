@@ -11,7 +11,7 @@ public class Detective extends Game{
 
 	public double priceAfterDiscount()
 	{
-		return super.price*0.15;
+		return price -(price*0.15);
 	}
 
 }

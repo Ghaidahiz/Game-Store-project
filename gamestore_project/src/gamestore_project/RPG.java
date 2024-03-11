@@ -10,6 +10,6 @@ public class RPG extends Game{
 	}
 	public double priceAfterDiscount()
 	{
-		return super.price*0.50;
+		return price-(price*0.50);
 	}
 }

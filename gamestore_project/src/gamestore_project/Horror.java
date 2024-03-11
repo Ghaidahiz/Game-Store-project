@@ -11,7 +11,7 @@ public class Horror extends Game{
 	}
 	public double priceAfterDiscount()
 	{
-		return super.price*0.30;
+		return price-(price*0.30);
 	}
 
 

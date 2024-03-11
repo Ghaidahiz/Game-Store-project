@@ -12,6 +12,6 @@ public class Survival extends Game{
 
 	public double priceAfterDiscount() 
 	{
-		return super.price*0.40;
+		return price-(price*0.40);
 	}
 }
