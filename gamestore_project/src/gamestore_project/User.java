@@ -74,4 +74,7 @@ public class User {
 	public Game[] getGameLibrary() {
 		return gameLibrary;
 	}
+	public int getNumberOfGames() {
+		return numberOfGames;
+	}
 }
