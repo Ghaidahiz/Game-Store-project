@@ -5,8 +5,11 @@ public class GameStoreDemo {
     public static void main(String[] args) {
        Scanner sc = new Scanner(System.in); 
 
+        Admin Almaha= new Admin("Almaha", "123");
+        Admin Eman= new Admin("Eman", "321");
+        Admin Ghaida= new Admin("Ghaida", "213");
 
-       GameStore GEA = new GameStore("GEA");
+       GameStore GEA = new GameStore("GEA",Almaha,Eman,Ghaida);
 
 System.out.println("GEA GAME STORE");
 int check;
