@@ -25,14 +25,14 @@ public class GameStoreDemo {
                 System.out.println("PLEASE ENTER YOUR NAME :");
                 String name = sc.next();
                 if (GEA.findUser(name) == null) {
-                    System.out.println("WELCOME TO OUR STORE , PLEASE FILL THE NEXT INFORMATION");
+                    System.out.println("WELCOME TO OUR STORE , PLEASE FILL OUT THE NEXT INFORMATION");
                     System.out.println("PLEASE ENTER YOUR WALLET AMOUNT :");
                     double wallet = sc.nextDouble();
 
-                     u1 = new User(name, wallet);
-                     GEA.addUser(u1);
+                    u1 = new User(name, wallet);
+                    GEA.addUser(u1);
                 } else if (GEA.findUser(name) != null) {
-                     u1 = GEA.findUser(name);
+                    u1 = GEA.findUser(name);
                     System.out.println("WELCOME BACK !");
                 }
 
@@ -52,7 +52,7 @@ public class GameStoreDemo {
                 case 1:
                     System.out.println("ENTER THE NAME OF THE GAME ..");
                     String Gname = sc.nextLine();
-                 (GEA.findUser(name)).buyGame(GEA.searchForGame(Gname));
+                    (GEA.findUser(name)).buyGame(GEA.searchForGame(Gname));
                     break;
 
                 case 2:
@@ -76,7 +76,7 @@ public class GameStoreDemo {
                     break;
 
                 case 5:
-                (GEA.findUser(name)).toString();
+                    (GEA.findUser(name)).toString();
                     break;
 
                 case 0:
@@ -84,22 +84,109 @@ public class GameStoreDemo {
                     break;
                 }
 
-
-
-
             } else if (check == 2) {
+                boolean isAdmin = false;
+                String name = "";
 
+                while (isAdmin == false) {
 
+                    System.out.println("PLEASE ENTER YOUR NAME :");
+                    name = sc.next();
 
+                    for (int i = 0; i < GEA.getAdminList().length; i++) {
 
+                        if (GEA.getAdminList()[i].getUsername().equals(name)) {
+
+                            System.out.println("WELCOME BACK! , PLEASE ENTER YOUR PASSWORD");
+                            String password = sc.nextLine();
+
+                            if (GEA.getAdminList()[i].getPassword().equals(password)) {
+                                isAdmin = true;
+                                break;
+                            } else {
+                                System.out.println("INCORRECT PASSWORD, PLEASE TRY AGAIN");
+                            }
+
+                        } else {
+                            System.out.println("INCORRECT USERNAME, PLEASE TRY AGAIN");
+                        }
+                    }
+                }
+
+                System.out.println("HELLO ADMIN " + name + " PLEASE SELECT THE SERVICE THAT YOU WANT ");
+                System.out.println(
+                        "1- ADD A GAME TO THE STORE ? \n 2- REMOVE A GAME FROM THE STORE ? \n 3- SEARCH FOR A GAME ? \n 4- DISPLAY ALL GAMES ? \n 0- EXIT ?");
+                int choice = sc.nextInt();
+
+                while (choice < 0 && choice > 4) {
+                    System.out.println("INVALID INPUT , PLEASE TRY AGAIN ");
+                    System.out.println(
+                            "1- ADD A GAME TO THE STORE ? \n 2- REMOVE A GAME FROM THE STORE ? \n 3- SEARCH FOR A GAME ? \n 4- DISPLAY ALL GAMES ? \n 0- EXIT ?");
+                    choice = sc.nextInt();
+                }
+                switch (choice) {
+                case 1:
+                    System.out.println("ENTER THE GAME'S NAME");
+                    String Gname = sc.nextLine();
+                    System.out.println("ENTER THE GAME'S PUBLISHER");
+                    String Gpub = sc.nextLine();
+                    System.out.println("ENTER THE GAME'S PRICE");
+                    double Gprice = sc.nextDouble();
+                    System.out.println("ENTER THE GAME'S GENRE");
+                    System.out.println("1- Detective ? \n 2- Horror ? \n 3- RPG ? \n 4- Story-rich ? \n 5- Survival ?");
+                    int GGenre = sc.nextInt();
+                    while (GGenre < 1 && choice > 4) {
+                        System.out.println("INVALID INPUT , PLEASE TRY AGAIN ?");
+                        System.out.println("ENTER THE GAME'S GENRE");
+                        System.out.println(
+                                "1- Detective ? \n 2- Horror ? \n 3- RPG ? \n 4- Story-rich ? \n 5- Survival ?");
+                        choice = sc.nextInt();
+                    }
+                    switch (GGenre) {
+                    case 1:
+                        Game game = new Detective(Gname, Gpub, Gprice);
+                        GEA.addGame(game);
+                        break;
+                    case 2:
+                        game = new Horror(Gname, Gpub, Gprice);
+                        GEA.addGame(game);
+                        break;
+                    case 3:
+                        game = new RPG(Gname, Gpub, Gprice);
+                        GEA.addGame(game);
+                        break;
+                    case 4:
+                        game = new StoryRich(Gname, Gpub, Gprice);
+                        GEA.addGame(game);
+                        break;
+                    }
+                    break;
+                case 2:
+                    System.out.println("ENTER THE GAME'S NAME");
+                    Gname = sc.nextLine();
+                    GEA.removeGame(Gname);
+
+                    break;
+                case 3:
+                    System.out.println("ENTER THE GAME'S NAME");
+                    Gname = sc.nextLine();
+                    GEA.searchForGame(Gname);
+                    break;
+                case 4:
+
+                    break;
+                case 0:
+
+                    break;
+
+                default:
+                    break;
+                }
             } else
-
 
                 System.out.println("invalid input , try again..");
 
         } while (check != 1 && check != 2);
-    }}
 
-
-
-
+    }
+}
