@@ -30,6 +30,7 @@ public class GameStoreDemo {
                     double wallet = sc.nextDouble();
 
                      u1 = new User(name, wallet);
+                     GEA.addUser(u1);
                 } else if (GEA.findUser(name) != null) {
                      u1 = GEA.findUser(name);
                     System.out.println("WELCOME BACK !");
@@ -51,31 +52,31 @@ public class GameStoreDemo {
                 case 1:
                     System.out.println("ENTER THE NAME OF THE GAME ..");
                     String Gname = sc.nextLine();
-                    u1.buyGame(GEA.searchForGame(Gname));
+                 (GEA.findUser(name)).buyGame(GEA.searchForGame(Gname));
                     break;
 
                 case 2:
                     System.out.println(" ENTER THE NAME OF YOUR FRIEND ACCOUNT AND THE NAME OF THE WANTED GAME");
                     String Fname = sc.nextLine();
                     Gname = sc.nextLine();
-                    u1.sendGift(GEA.findUser(Fname), GEA.searchForGame(Gname));
+                    (GEA.findUser(name)).sendGift(GEA.findUser(Fname), GEA.searchForGame(Gname));
 
                     break;
 
                 case 3:
                     System.out.println("ENTER THE NAME OF THE GAME YOU WANT TO UNINSTALL..");
                     Gname = sc.nextLine();
-                    u1.uninstallGame(Gname);
+                    (GEA.findUser(name)).uninstallGame(Gname);
                     break;
 
                 case 4:
                     System.out.println("ENTER THE NAME OF THE GAME YOU WANT TO FIND IN YOUR LIBRARY ..");
                     Gname = sc.nextLine();
-                    u1.findGame(Gname);
+                    (GEA.findUser(name)).findGame(Gname);
                     break;
 
                 case 5:
-                    u1.toString();
+                (GEA.findUser(name)).toString();
                     break;
 
                 case 0:
