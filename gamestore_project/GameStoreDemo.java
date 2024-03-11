@@ -193,7 +193,8 @@ public class GameStoreDemo {
                             "1-ALL GAMES. \n 2-RPG GAMES. \n 3-DETECTIVE GAMES. \n 4-HORROR GAMES. \n 5-STORY RICH GAMES. \n 6-SURVIVAL GAMES. ");
                     int selection = sc.nextInt();
                     GEA.displayGames(selection);
-                    break;}
+                    break;
+                }
             } else
 
                 System.out.println("invalid input , try again..");

@@ -71,9 +71,11 @@ public class User {
 	public String getUsername() {
 		return username;
 	}
+
 	public Game[] getGameLibrary() {
 		return gameLibrary;
 	}
+
 	public int getNumberOfGames() {
 		return numberOfGames;
 	}
