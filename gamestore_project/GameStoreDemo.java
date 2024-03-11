@@ -103,7 +103,7 @@ public class GameStoreDemo {
                 	     break;
                 	     
                     case 3:
-                    	System.out.println("this is all games of type Detective in GEA STORE:\n--------------");
+                    	System.out.println("these are all games of type Detective in GEA STORE:\n--------------");
                     	Game[] DetectiveGame= GEA.getDetective();
                 	    for (int i=0; i<DetectiveGame.length; i++)
                 	    System.out.println(DetectiveGame[i]);
