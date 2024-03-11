@@ -109,29 +109,45 @@ public class GameStore {
       return false;
    }
 
-   public Game searchForGame(String name) {
+public Game searchForGame(String name) {
+	
+	for(int i =0 ; i< noGames ;i++)
+	if(gameList[i].getName().equals(name) )
+		return gameList[i];
+	
+   System.out.println("cant not find game with the received name :(");
+	  return null;
+        
+}
+    
+     
+ 
+public Game[] searchForGamepub ( String publisher ){
+ int counter=0, x=0;
+for (int i=0; i < noGames; i++)
+     if( gameList[i].getPublisher().equalsIgnoreCase(publisher) ) 
+        counter++;
+Game [] game = new Game[counter];
+for (int i=0; i < noGames; i++)
+    if( gameList[i].getPublisher().equalsIgnoreCase(publisher) ) 
+       game[x++]= gameList[i];
+return game; }
 
-      for (int i = 0; i < noGames; i++)
-         if (gameList[i].getName().equals(name))
-            return gameList[i];
+public Game[] getGameList() { return gameList ;}
 
-      System.out.println("cant not find game with the received name :(");
-      return null;
-
-   }
+public int getNoUsers() {return noUsers;}
 
 
-   public Game[] getRPG() {
-      int count = 0, x = 0;
-      for (int i = 0; i < noGames; i++)
-         if (gameList[i] instanceof RPG)
-            count++;
-      Game[] RPGgame = new Game[count];
-      for (int i = 0; i < noGames; i++)
-         if (gameList[i] instanceof RPG)
-            RPGgame[x++] = gameList[i];
-      return RPGgame;
-   }
+public Game[] getRPG(){
+int count=0, x=0;
+for(int i=0; i<noGames ; i++)
+   if( gameList[i] instanceof RPG)
+      count++;
+Game[] RPGgame= new Game[count];
+for(int i=0; i<noGames ; i++)
+   if( gameList[i] instanceof RPG)
+      RPGgame[x++]=gameList[i];
+return RPGgame;}
 
    public Game[] getStoryRich() {
       int count = 0, x = 0;
