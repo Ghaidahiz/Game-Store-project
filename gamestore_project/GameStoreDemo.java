@@ -18,11 +18,18 @@ public class GameStoreDemo {
         GameStore GEA = new GameStore("GEA", Almaha, Eman, Ghaida);
 
         System.out.println("GEA GAME STORE");
-        int check;
+        int check=0;
 
         do {
             System.out.println("ARE YOU A .. \n 1- USER? \n 2-ADMIN?");
-            check = sc.nextInt();
+            try {
+                check = sc.nextInt();
+
+            } catch (InputMismatchException e) {
+            System.out.println("PLEASE ENTER A DIGIT");
+            sc.next();
+            check=0;
+                }
             User u1;
             if (check == 1) {
 
@@ -39,19 +46,24 @@ public class GameStoreDemo {
                     u1 = GEA.findUser(name);
                     System.out.println("WELCOME BACK !");
                 }
+                int choice = 0;
 
-                System.out.println(" PLEASE SELECT NUMBER OF SERVICE THAT YOU WANT : ");
-                System.out.println(
-                        "1- BUY A GAME ? \n 2-SEND GIFT TO A FRIEND ? \n 3-UNINSTALL GAME ? \n 4- FIND GAME ? \n 5-SHOW ALL GAMES IN LIBRARY ? \n 6-SHOW GAMES OF GEA STORE ? \n 0-EXIT ?");
-                int choice = sc.nextInt();
+                try {
+                    do {
+                        System.out.println(" PLEASE SELECT NUMBER OF SERVICE THAT YOU WANT : ");
+                        System.out.println(
+                                "1- BUY A GAME ? \n 2-SEND GIFT TO A FRIEND ? \n 3-UNINSTALL GAME ? \n 4- FIND GAME ? \n 5-SHOW ALL GAMES IN LIBRARY ? \n 6-SHOW GAMES OF GEA STORE ? \n 0-EXIT ?");
+                        choice = sc.nextInt();
 
-                while (choice < 0 && choice > 6) {
-                    System.out.println("WRONG INPUT , PLEASE TRY AGAIN ?");
-                    System.out.println(
-                            "1- BUY A GAME ? \n 2-SEND GIFT TO A FRIEND ? \n 3-UNINSTALL GAME ? \n 4- FIND GAME ? \n 5-SHOW ALL GAMES IN LIBRARY ? \n 6-SHOW GAMES OF GEA STORE ? \n 0-EXIT ?");
-                    choice = sc.nextInt();
+                        if (choice < 0 || choice > 6) {
+                            System.out.println("INVALID INPUT , PLEASE ENTER A NUMBER BETWEEN 0 AND 6 ");
+                        }
+                    } while (choice < 0 || choice > 6);
+                } catch (InputMismatchException e) {
+                    System.out.println("PLEASE ENTER A DIGIT");
+                    sc.next();
+                    choice = -1; // Set choice to -1 to continue loop
                 }
-
                 switch (choice) {
                 case 1:
                     System.out.println("ENTER THE NAME OF THE GAME ..");
@@ -80,18 +92,14 @@ public class GameStoreDemo {
                     break;
 
                 case 5:
-                    System.out.println("these are all games you have in your library");
+                    System.out.println("THESE ARE YOUR LIBRARY'S GAMES");
                     Game[] library = (GEA.findUser(name)).getGameLibrary();
                     for (int i = 0; i < (GEA.findUser(name)).getNumberOfGames(); i++)
                         System.out.println(library[i]);
                     break;
 
                 case 6:
-                    System.out.println("CHOOSE WHAT DO YOU WANT TO DISPLAY?");
-                    System.out.println(
-                            "1-ALL GAMES. \n 2-RPG GAMES. \n 3-DETECTIVE GAMES. \n 4-HORROR GAMES. \n 5-STORY RICH GAMES. \n 6-SURVIVAL GAMES. ");
-                    int selection = sc.nextInt();
-                    GEA.displayGames(selection);
+                GEA.displayGames();
                     break;
 
                 case 0:
@@ -127,35 +135,50 @@ public class GameStoreDemo {
                         }
                     }
                 }
-
+                int choice = 0;
                 System.out.println("HELLO ADMIN " + name + " PLEASE SELECT THE SERVICE THAT YOU WANT ");
-                System.out.println(
-                        "1- ADD A GAME TO THE STORE ? \n 2- REMOVE A GAME FROM THE STORE ? \n 3- SEARCH FOR A GAME ? \n 4- DISPLAY GAMES ?");
-                int choice = sc.nextInt();
+                try {
+                    do {
+                        System.out.println(
+                                "1- ADD A GAME TO THE STORE ? \n 2- REMOVE A GAME FROM THE STORE ? \n 3- SEARCH FOR A GAME ? \n 4- DISPLAY GAMES ?");
+                        choice = sc.nextInt();
 
-                while (choice < 0 && choice > 4) {
-                    System.out.println("INVALID INPUT , PLEASE TRY AGAIN ");
-                    System.out.println(
-                            "1- ADD A GAME TO THE STORE ? \n 2- REMOVE A GAME FROM THE STORE ? \n 3- SEARCH FOR A GAME ? \n 4- DISPLAY GAMES ?");
-                    choice = sc.nextInt();
+                        if (choice < 0 || choice > 4) {
+                            System.out.println("INVALID INPUT , PLEASE ENTER A NUMBER BETWEEN 0 AND 4 ");
+                        }
+                    } while (choice < 0 || choice > 4);
+                } catch (InputMismatchException e) {
+                    System.out.println("PLEASE ENTER A DIGIT");
+                    sc.next();
+                    choice = -1; // Set choice to -1 to continue loop
+
                 }
+
                 switch (choice) {
                 case 1:
+                    int GGenre = 0;
                     System.out.println("ENTER THE GAME'S NAME");
                     String Gname = sc.nextLine();
                     System.out.println("ENTER THE GAME'S PUBLISHER");
                     String Gpub = sc.nextLine();
                     System.out.println("ENTER THE GAME'S PRICE");
                     double Gprice = sc.nextDouble();
-                    System.out.println("ENTER THE GAME'S GENRE");
-                    System.out.println("1- Detective ? \n 2- Horror ? \n 3- RPG ? \n 4- Story-rich ? \n 5- Survival ?");
-                    int GGenre = sc.nextInt();
-                    while (GGenre < 1 && choice > 4) {
-                        System.out.println("INVALID INPUT , PLEASE TRY AGAIN ?");
-                        System.out.println("ENTER THE GAME'S GENRE");
-                        System.out.println(
-                                "1- Detective ? \n 2- Horror ? \n 3- RPG ? \n 4- Story-rich ? \n 5- Survival ?");
-                        choice = sc.nextInt();
+
+                    try {
+                        do {
+                            System.out.println("ENTER THE GAME'S GENRE");
+                            System.out.println(
+                                    "1- Detective ? \n 2- Horror ? \n 3- RPG ? \n 4- Story-rich ? \n 5- Survival ?");
+                            GGenre = sc.nextInt();
+
+                            if (GGenre < 1 || GGenre > 5) {
+                                System.out.println("INVALID INPUT , PLEASE ENTER A NUMBER BETWEEN 0 AND 5 ");
+                            }
+                        } while (GGenre < 1 || GGenre > 5);
+                    } catch (InputMismatchException e) {
+                        System.out.println("PLEASE ENTER A DIGIT");
+                        sc.next();
+                        GGenre = -1; // Set GGenre to -1 to continue loop
                     }
                     switch (GGenre) {
                     case 1:
@@ -174,6 +197,9 @@ public class GameStoreDemo {
                         game = new StoryRich(Gname, Gpub, Gprice);
                         GEA.addGame(game);
                         break;
+                    case 5:
+                        game = new Survival(Gname, Gpub, Gprice);
+                        GEA.addGame(game);
                     }
                     break;
                 case 2:
@@ -187,12 +213,8 @@ public class GameStoreDemo {
                     Gname = sc.nextLine();
                     GEA.searchForGame(Gname);
                     break;
-                case 4:
-                    System.out.println("CHOOSE WHAT DO YOU WANT TO DISPLAY?");
-                    System.out.println(
-                            "1-ALL GAMES. \n 2-RPG GAMES. \n 3-DETECTIVE GAMES. \n 4-HORROR GAMES. \n 5-STORY RICH GAMES. \n 6-SURVIVAL GAMES. ");
-                    int selection = sc.nextInt();
-                    GEA.displayGames(selection);
+                case 4: 
+                    GEA.displayGames();
                     break;
                 }
             } else

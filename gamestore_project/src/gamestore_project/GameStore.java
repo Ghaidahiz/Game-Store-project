@@ -1,6 +1,10 @@
 package gamestore_project;
 
+import java.util.Scanner;
+import java.util.InputMismatchException;
+
 public class GameStore {
+   Scanner sc = new Scanner(System.in);
    private String name;
    private User[] userList = new User[50];
    private Game[] gameList = new Game[50];
@@ -192,8 +196,25 @@ public class GameStore {
       return adminList;
    }
 
-   public void displayGames(int selection) {
+   public void displayGames() {
+      System.out.println("CHOOSE WHAT DO YOU WANT TO DISPLAY?");
+      int selection = 0;
+      try {
+         do {
+            System.out.println(
+                  "1-ALL GAMES. \n 2-RPG GAMES. \n 3-DETECTIVE GAMES. \n 4-HORROR GAMES. \n 5-STORY RICH GAMES. \n 6-SURVIVAL GAMES. ");
+            selection = sc.nextInt();
 
+            if (selection < 1 || selection > 6) {
+               System.out.println("INVALID INPUT , PLEASE ENTER A NUMBER BETWEEN 0 AND 6 ");
+            }
+         } while (selection < 1 || selection > 6);
+      } catch (InputMismatchException e) {
+         System.out.println("PLEASE ENTER A DIGIT");
+         sc.next();
+         selection = -1; // Set selection to -1 to continue loop
+
+      }
       switch (selection) {
       case 1:
          System.out.println("this is all games in GEA STORE:\n--------------");
