@@ -128,9 +128,13 @@ public class GameStore {
       return gameList;
    }
 
-   public int getNoUsers() {
-      return noUsers;
+   public int getNoGames() {
+      return noGames;
    }
+   
+   public int getNoUsers() {
+	      return noUsers;
+	   }
 
    public Game[] getRPG() {
       int count = 0, x = 0;
