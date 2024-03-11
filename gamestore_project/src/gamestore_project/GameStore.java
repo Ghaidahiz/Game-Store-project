@@ -123,6 +123,10 @@ for (int i=0; i < noGames; i++)
        game[x++]= gameList[i];
 return game; }
 
+public Game[] getGameList() { return gameList ;}
+
+public int getNoUsers() {return noUsers;}
+
 
 public Game[] getRPG(){
 int count=0, x=0;
