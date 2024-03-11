@@ -14,10 +14,10 @@ public User(String n, double wallet){
 	
 }
 
-public boolean buyGame(Game g) {//*** I may need too cast g and make cases for each child of games but this is the basic idea***
+public boolean buyGame(Game g) {
 	if(g==null)
 		return false;
-	if (g.priceAfterDiscount() <= wallet) {//also I need to check if game exists in library**
+	if (g.priceAfterDiscount() <= wallet) {
 		gameLibrary[nOfg++]=g;
 		wallet = wallet - g.priceAfterDiscount();
 		return true;
@@ -33,7 +33,7 @@ public boolean sendGift(User friend , Game g) {
 	if (g==null || friend==null)
 		return false;
 	
-	if (g.priceAfterDiscount() <= wallet ) {
+	if (g.priceAfterDiscount() <= wallet && friend.nOfg < friend.gameLibrary.length) {
 		friend.gameLibrary[friend.nOfg++]=g;
 		this.wallet = this.wallet - g.priceAfterDiscount();
 		return true;
