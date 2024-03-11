@@ -78,7 +78,7 @@ public class GameStoreDemo {
                 case 5:
                 	System.out.println("these are all games you have in your library");
                    Game [] library= (GEA.findUser(name)).getGameLibrary();
-                   for (int i=0; i<(GEA.findUser(name)).getNofg(); i++)
+                   for (int i=0; i<(GEA.findUser(name)).getNumberOfGames(); i++)
                	   	System.out.println(library[i]);
                     break;
                     
