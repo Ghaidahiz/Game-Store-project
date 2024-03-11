@@ -49,6 +49,9 @@ switch (choice) {
 
     case 4:
     break;
+
+    case 0:
+    break;
 }
 
 
