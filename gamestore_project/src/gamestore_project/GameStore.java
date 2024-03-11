@@ -12,8 +12,8 @@ private int noGames;
 public GameStore(String name,Admin a1, Admin a2, Admin a3){
 this.name=name;
 adminList[0]=a1;
-adminList[1]= a2;
-adminList[2]= a3
+adminList[1]= a2; 
+adminList[2]= a3;
 noUsers =0;
 noGames =0;
 }
