@@ -4,13 +4,19 @@ public class GameStore {
 private String name;
 private User[] userList=new User[50];
 private Game[] gameList=new Game [50];
+private Admin[] adminList =new Admin[3];
+
 private int noUsers;
 private int noGames;
 
-public GameStore(String name){
+public GameStore(String name,Admin a1, Admin a2, Admin a3){
 this.name=name;
+adminList[0]=a1;
+adminList[1]= a2; 
+adminList[2]= a3;
 noUsers =0;
-noGames =0; }
+noGames =0;
+}
 
 
 public void addUser(User u){
@@ -176,6 +182,8 @@ for(int i=0; i<noGames ; i++)
    if( gameList[i] instanceof Survival)
       Sgame[x++]=gameList[i];
 return Sgame;}
+
+
 
 
 }
