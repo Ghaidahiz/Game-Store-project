@@ -220,7 +220,7 @@ public class GameStoreDemo {
                 case 3:
                     System.out.println("ENTER THE GAME'S NAME");
                     Gname = sc.nextLine();
-                    GEA.searchForGame(Gname);
+                   System.out.println( GEA.searchForGame(Gname));
                     break;
                 case 4:
                     GEA.displayGames();
