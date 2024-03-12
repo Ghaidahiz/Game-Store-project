@@ -3,9 +3,6 @@ package gamestore_project;
 import java.util.*;
 
 public class GameStoreDemo {
-    public static void displayAllGames() {
-
-    }
 
     public static void main(String[] args) {
 
@@ -16,12 +13,11 @@ public class GameStoreDemo {
         Admin Ghaida = new Admin("Ghaida", "213");
 
         GameStore GEA = new GameStore("GEA", Almaha, Eman, Ghaida);
-
         System.out.println("GEA GAME STORE");
         int check = 0;
 
         do {
-            System.out.println("ARE YOU A .. \n 1- USER? \n 2-ADMIN?");
+            System.out.println("ARE YOU A .. \n 1- USER? \n 2-ADMIN? \n 3-EXIT?");
             try {
                 check = sc.nextInt();
                 sc.nextLine();
@@ -37,7 +33,7 @@ public class GameStoreDemo {
                 System.out.println("PLEASE ENTER YOUR NAME :");
                 String name = sc.next();
                 if (GEA.findUser(name) == null) {
-                    System.out.println("WELCOME TO OUR STORE , PLEASE FILL OUT THE NEXT INFORMATION");
+                    System.out.println("\nWELCOME TO OUR STORE , PLEASE FILL OUT THE NEXT INFORMATION");
                     System.out.println("PLEASE ENTER YOUR WALLET AMOUNT :");
                     double wallet = sc.nextDouble();
 
@@ -47,13 +43,14 @@ public class GameStoreDemo {
                     u1 = GEA.findUser(name);
                     System.out.println("WELCOME BACK !");
                 }
-                int choice = 0;
-                do {
+                int choice ;
+                do{
+                 do {
 
                     try {
-                        System.out.println(" PLEASE SELECT NUMBER OF SERVICE THAT YOU WANT : ");
+                        System.out.println(" \nPLEASE SELECT NUMBER OF SERVICE THAT YOU WANT : ");
                         System.out.println(
-                                "1- BUY A GAME ? \n 2-SEND GIFT TO A FRIEND ? \n 3-UNINSTALL GAME ? \n 4- FIND GAME ? \n 5-SHOW ALL GAMES IN LIBRARY ? \n 6-SHOW GAMES OF GEA STORE ? \n 0-EXIT ?");
+                                "1- BUY A GAME ? \n 2-SEND GIFT TO A FRIEND ? \n 3-UNINSTALL GAME ? \n 4- FIND GAME ? \n 5-SHOW ALL GAMES IN LIBRARY ? \n 6-SHOW GAMES OF GEA STORE ? \n 0-LOG OUT ?");
                         choice = sc.nextInt();
                         sc.nextLine();
 
@@ -66,7 +63,7 @@ public class GameStoreDemo {
                         choice = -1; // Set choice to -1 to continue loop
                     }
                 } while (choice < 0 || choice > 6);
-
+                
                 switch (choice) {
                 case 1:
                     System.out.println("ENTER THE NAME OF THE GAME ..");
@@ -95,7 +92,7 @@ public class GameStoreDemo {
                     break;
 
                 case 5:
-                    System.out.println("THESE ARE YOUR LIBRARY'S GAMES");
+                    System.out.println("THESE ARE YOUR LIBRARY'S GAMES:");
                     Game[] library = (GEA.findUser(name)).getGameLibrary();
                     for (int i = 0; i < (GEA.findUser(name)).getNumberOfGames(); i++)
                         System.out.println(library[i]);
@@ -106,9 +103,10 @@ public class GameStoreDemo {
                     break;
 
                 case 0:
-                    System.exit(0);
+                    
                     break;
                 }
+            }while(choice !=0);
 
             } else if (check == 2) {
                 boolean isAdmin = false;
@@ -121,7 +119,7 @@ public class GameStoreDemo {
 
                     for (int i = 0; i < GEA.getAdminList().length; i++) {
 
-                        if (GEA.getAdminList()[i].getUsername().equals(name)) {
+                        if (GEA.getAdminList()[i].getUsername().equalsIgnoreCase(name)) {
 
                             System.out.println("WELCOME BACK! , PLEASE ENTER YOUR PASSWORD");
                             String password = sc.nextLine();
@@ -133,23 +131,24 @@ public class GameStoreDemo {
                                 System.out.println("INCORRECT PASSWORD, PLEASE TRY AGAIN");
                             }
 
-                        } else {
+                        } else if (!(GEA.getAdminList()[i].getUsername().equalsIgnoreCase(name))){
                             System.out.println("INCORRECT USERNAME, PLEASE TRY AGAIN");
                         }
                     }
                 }
                 int choice = 0;
+                do {
                 System.out.println("HELLO ADMIN " + name + " PLEASE SELECT THE SERVICE THAT YOU WANT ");
                 do {
 
                     try {
                         System.out.println(
-                                "1- ADD A GAME TO THE STORE ? \n 2- REMOVE A GAME FROM THE STORE ? \n 3- SEARCH FOR A GAME ? \n 4- DISPLAY GAMES ?");
+                                "1- ADD A GAME TO THE STORE ? \n 2- REMOVE A GAME FROM THE STORE ? \n 3- SEARCH FOR A GAME ? \n 4- DISPLAY GAMES ? \n 5-LOG OUT?");
                         choice = sc.nextInt();
                         sc.nextLine();
 
-                        if (choice < 0 || choice > 4) {
-                            System.out.println("INVALID INPUT , PLEASE ENTER A NUMBER BETWEEN 0 AND 4 ");
+                        if (choice < 1 || choice > 5) {
+                            System.out.println("INVALID INPUT , PLEASE ENTER A NUMBER BETWEEN 1 AND 6 ");
                         }
 
                     } catch (InputMismatchException e) {
@@ -157,7 +156,7 @@ public class GameStoreDemo {
                         sc.next();
                         choice = -1; // Set choice to -1 to continue loop
                     }
-                } while (choice < 0 || choice > 4);
+                } while (choice < 0 || choice > 5);
 
                 switch (choice) {
                 case 1:
@@ -225,12 +224,15 @@ public class GameStoreDemo {
                 case 4:
                     GEA.displayGames();
                     break;
+                case 5: 
+                	break;
                 }
-            } else
+              }while(choice!=5);
+            } else if(check!=3)
 
                 System.out.println("invalid input , try again..");
 
-        } while (check != 1 && check != 2);
+        } while (check != 3);
 
     }
 }
