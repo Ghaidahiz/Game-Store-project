@@ -33,7 +33,7 @@ public class GameStoreDemo {
                 System.out.println("PLEASE ENTER YOUR NAME :");
                 String name = sc.next();
                 if (GEA.findUser(name) == null) {
-                    System.out.println("\nWELCOME TO OUR STORE , PLEASE FILL OUT THE NEXT INFORMATION");
+                    System.out.println("\nWELCOME TO OUR STORE " + name + ", THIS IS YOUR FIRST TIME IN OUR APP :D");
                     System.out.println("PLEASE ENTER YOUR WALLET AMOUNT :");
                     double wallet = sc.nextDouble();
 
@@ -50,7 +50,7 @@ public class GameStoreDemo {
                     try {
                         System.out.println(" \nPLEASE SELECT NUMBER OF SERVICE THAT YOU WANT : ");
                         System.out.println(
-                                "1- BUY A GAME ? \n 2-SEND GIFT TO A FRIEND ? \n 3-UNINSTALL GAME ? \n 4- FIND GAME ? \n 5-SHOW ALL GAMES IN LIBRARY ? \n 6-SHOW GAMES OF GEA STORE ? \n 0-LOG OUT ?");
+                                " ************************* \n 1- BUY A GAME ? \n 2-SEND GIFT TO A FRIEND ? \n 3-UNINSTALL GAME ? \n 4- FIND GAME ? \n 5-SHOW ALL GAMES IN LIBRARY ? \n 6-SHOW GAMES OF GEA STORE ? \n 0-LOGOUT ?");
                         choice = sc.nextInt();
                         sc.nextLine();
 
@@ -111,31 +111,32 @@ public class GameStoreDemo {
             } else if (check == 2) {
                 boolean isAdmin = false;
                 String name = "";
-
+                boolean userFound=false;
                 while (isAdmin == false) {
 
                     System.out.println("PLEASE ENTER YOUR NAME :");
+                    userFound=false;
                     name = sc.nextLine();
 
                     for (int i = 0; i < GEA.getAdminList().length; i++) {
 
                         if (GEA.getAdminList()[i].getUsername().equalsIgnoreCase(name)) {
 
-                            System.out.println("WELCOME BACK! , PLEASE ENTER YOUR PASSWORD");
+                            System.out.println("WELCOME BACK!, PLEASE ENTER YOUR PASSWORD");
                             String password = sc.nextLine();
-
+                            userFound = true;
                             if (GEA.getAdminList()[i].getPassword().equals(password)) {
                                 isAdmin = true;
                                 break;
-                            } else {
-                                System.out.println("INCORRECT PASSWORD, PLEASE TRY AGAIN");
+                            } else 
+                                System.out.println("INCORRECT PASSWORD");
                             }
 
-                        } else if (!(GEA.getAdminList()[i].getUsername().equalsIgnoreCase(name))){
+                        
+                        }if (userFound == false) {
                             System.out.println("INCORRECT USERNAME, PLEASE TRY AGAIN");
-                        }
                     }
-                }
+                    }
                 int choice = 0;
                 do {
                 System.out.println("HELLO ADMIN " + name + " PLEASE SELECT THE SERVICE THAT YOU WANT ");
@@ -143,7 +144,7 @@ public class GameStoreDemo {
 
                     try {
                         System.out.println(
-                                "1- ADD A GAME TO THE STORE ? \n 2- REMOVE A GAME FROM THE STORE ? \n 3- SEARCH FOR A GAME ? \n 4- DISPLAY GAMES ? \n 5-LOG OUT?");
+                                " ************************* \n 1- ADD A GAME TO THE STORE  \n 2- REMOVE A GAME FROM THE STORE  \n 3- SEARCH FOR A GAME  \n 4- DISPLAY GAMES  \n 5-LOGOUT");
                         choice = sc.nextInt();
                         sc.nextLine();
 
@@ -173,7 +174,7 @@ public class GameStoreDemo {
                         try {
                             System.out.println("ENTER THE GAME'S GENRE");
                             System.out.println(
-                                    "1- Detective ? \n 2- Horror ? \n 3- RPG ? \n 4- Story-rich ? \n 5- Survival ?");
+                                    " 1- Detective ? \n 2- Horror ? \n 3- RPG ? \n 4- Story-rich ? \n 5- Survival ?");
                             GGenre = sc.nextInt();
                             sc.nextLine();
 

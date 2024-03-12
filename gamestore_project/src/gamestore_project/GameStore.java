@@ -60,9 +60,9 @@ public class GameStore {
 
    public User findUser(String username) {
       for (int i = 0; i < noUsers; i++)
-         if (userList[i].getUsername().equals(username))
+         if (userList[i].getUsername().equalsIgnoreCase(username))
             return userList[i];
-      System.out.println("there is no user with this username: " + username);
+      System.out.println("Sorry.. couldn't find user \"" + username + "\"");
       return null;
    }
 
@@ -131,69 +131,89 @@ public class GameStore {
    public int getNoGames() {
       return noGames;
    }
-   
+
    public int getNoUsers() {
-	      return noUsers;
-	   }
+      return noUsers;
+   }
 
    public Game[] getRPG() {
-      int count = 0, x = 0;
+      int RPGcount = 0, index = 0;
+      for (int i = 0; i < noGames; i++) {
+         if (gameList[i] instanceof RPG)
+            RPGcount++;
+      }
+      if (RPGcount == 0) {
+         System.out.println("there is no games of this genre in the store :(");
+      }
+      Game[] RPGgame = new Game[RPGcount];
       for (int i = 0; i < noGames; i++)
          if (gameList[i] instanceof RPG)
-            count++;
-      Game[] RPGgame = new Game[count];
-      for (int i = 0; i < noGames; i++)
-         if (gameList[i] instanceof RPG)
-            RPGgame[x++] = gameList[i];
+            RPGgame[index++] = gameList[i];
       return RPGgame;
    }
 
    public Game[] getStoryRich() {
-      int count = 0, x = 0;
+      int SRcount = 0, index = 0;
+      for (int i = 0; i < noGames; i++) {
+         if (gameList[i] instanceof StoryRich)
+            SRcount++;
+      }
+      if (SRcount == 0) {
+         System.out.println("there is no games of this genre in the store :(");
+      }
+      Game[] SRgame = new Game[SRcount];
       for (int i = 0; i < noGames; i++)
          if (gameList[i] instanceof StoryRich)
-            count++;
-      Game[] SRgame = new Game[count];
-      for (int i = 0; i < noGames; i++)
-         if (gameList[i] instanceof StoryRich)
-            SRgame[x++] = gameList[i];
+            SRgame[index++] = gameList[i];
       return SRgame;
    }
 
    public Game[] getHorror() {
-      int count = 0, x = 0;
+      int HRRcount = 0, index = 0;
+      for (int i = 0; i < noGames; i++) {
+         if (gameList[i] instanceof Horror)
+            HRRcount++;
+      }
+      if (HRRcount == 0) {
+         System.out.println("there is no games of this genre in the store :(");
+      }
+      Game[] HRRgame = new Game[HRRcount];
       for (int i = 0; i < noGames; i++)
          if (gameList[i] instanceof Horror)
-            count++;
-      Game[] Hgame = new Game[count];
-      for (int i = 0; i < noGames; i++)
-         if (gameList[i] instanceof Horror)
-            Hgame[x++] = gameList[i];
-      return Hgame;
+            HRRgame[index++] = gameList[i];
+      return HRRgame;
    }
 
    public Game[] getDetective() {
-      int count = 0, x = 0;
+      int DETcount = 0, index = 0;
+      for (int i = 0; i < noGames; i++) {
+         if (gameList[i] instanceof Detective)
+            DETcount++;
+      }
+      if (DETcount == 0) {
+         System.out.println("there is no games of this genre in the store :(");
+      }
+      Game[] DETgame = new Game[DETcount];
       for (int i = 0; i < noGames; i++)
          if (gameList[i] instanceof Detective)
-            count++;
-      Game[] Dgame = new Game[count];
-      for (int i = 0; i < noGames; i++)
-         if (gameList[i] instanceof Detective)
-            Dgame[x++] = gameList[i];
-      return Dgame;
+            DETgame[index++] = gameList[i];
+      return DETgame;
    }
 
    public Game[] getSurvival() {
-      int count = 0, x = 0;
+      int SURcount = 0, index = 0;
+      for (int i = 0; i < noGames; i++) {
+         if (gameList[i] instanceof Survival)
+            SURcount++;
+      }
+      if (SURcount == 0) {
+         System.out.println("there is no games of this genre in the store :(");
+      }
+      Game[] SURgame = new Game[SURcount];
       for (int i = 0; i < noGames; i++)
          if (gameList[i] instanceof Survival)
-            count++;
-      Game[] Sgame = new Game[count];
-      for (int i = 0; i < noGames; i++)
-         if (gameList[i] instanceof Survival)
-            Sgame[x++] = gameList[i];
-      return Sgame;
+            SURgame[index++] = gameList[i];
+      return SURgame;
    }
 
    public Admin[] getAdminList() {
@@ -203,59 +223,59 @@ public class GameStore {
    public void displayGames() {
       System.out.println("CHOOSE WHAT DO YOU WANT TO DISPLAY?");
       int selection = 0;
-      try {
-         do {
+      do {
+         try {
             System.out.println(
-                  "1-ALL GAMES. \n 2-RPG GAMES. \n 3-DETECTIVE GAMES. \n 4-HORROR GAMES. \n 5-STORY RICH GAMES. \n 6-SURVIVAL GAMES. ");
+                  " ~~~~~~~~~~~~~~~~~~~~~~ \n 1-ALL GAMES. \n 2-RPG GAMES. \n 3-DETECTIVE GAMES. \n 4-HORROR GAMES. \n 5-STORY RICH GAMES. \n 6-SURVIVAL GAMES. ");
             selection = sc.nextInt();
 
             if (selection < 1 || selection > 6) {
                System.out.println("INVALID INPUT , PLEASE ENTER A NUMBER BETWEEN 0 AND 6 ");
             }
-         } while (selection < 1 || selection > 6);
-      } catch (InputMismatchException e) {
-         System.out.println("PLEASE ENTER A DIGIT");
-         sc.next();
-         selection = -1; // Set selection to -1 to continue loop
+         } catch (InputMismatchException e) {
+            System.out.println("PLEASE ENTER A DIGIT");
+            sc.next();
+            selection = -1; // Set selection to -1 to continue loop
+         }
+      } while (selection < 1 || selection > 6);
 
-      }
       switch (selection) {
       case 1:
-         System.out.println("this is all games in GEA STORE:\n--------------");
+         System.out.println("these are all the games in " + name + " store:\n-------------- \n");
          for (int i = 0; i < noGames; i++)
             System.out.println(gameList[i]);
          break;
 
       case 2:
-         System.out.println("this is all games of type RPG in GEA STORE:\n--------------");
+         System.out.println("these are all the games of type RPG in " + name + " store:\n-------------- \n");
          Game[] RPGGame = getRPG();
          for (int i = 0; i < RPGGame.length; i++)
             System.out.println(RPGGame[i]);
          break;
 
       case 3:
-         System.out.println("these are all games of type Detective in GEA STORE:\n--------------");
+         System.out.println("these are all the games of type Detective in " + name + " store:\n-------------- \n");
          Game[] DetectiveGame = getDetective();
          for (int i = 0; i < DetectiveGame.length; i++)
             System.out.println(DetectiveGame[i]);
          break;
 
       case 4:
-         System.out.println("this is all games of type Horror in GEA STORE:\n--------------");
+         System.out.println("these are all the games of type Horror in " + name + " store:\n-------------- \n");
          Game[] HorrorGame = getHorror();
          for (int i = 0; i < HorrorGame.length; i++)
             System.out.println(HorrorGame[i]);
          break;
 
       case 5:
-         System.out.println("this is all games of type Story Rich in GEA STORE:\n--------------");
+         System.out.println("these are all the games of type Story-rich in " + name + " store:\n-------------- \n");
          Game[] SRGame = getStoryRich();
          for (int i = 0; i < SRGame.length; i++)
             System.out.println(SRGame[i]);
          break;
 
       case 6:
-         System.out.println("this is all games of type Survival in GEA STORE:\n--------------");
+         System.out.println("these are all the games of type Survival in " + name + " store:\n-------------- \n");
          Game[] SurvivalGame = getSurvival();
          for (int i = 0; i < SurvivalGame.length; i++)
             System.out.println(SurvivalGame[i]);
