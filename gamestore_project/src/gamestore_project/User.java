@@ -81,4 +81,11 @@ public class User {
 	public int getNumberOfGames() {
 		return numberOfGames;
 	}
+	
+	public String toString() {
+		String gamesInLibraray="";
+		for(int i=0;i<numberOfGames;i++)
+			gamesInLibraray+=gameLibrary[i].toString();
+		return "\nUsername: "+username+"\nThe amount of fund in your wallet: "+wallet+"\n Number of games in your library: "+numberOfGames+"Games in your library:\n"+gamesInLibraray;
+	}
 }
