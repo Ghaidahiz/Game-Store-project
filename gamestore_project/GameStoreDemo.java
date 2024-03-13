@@ -1,6 +1,8 @@
 package gamestore_project;
 
 import java.util.*;
+         ///System.out.println("the user was added successfully :) ");
+         /// System.out.println("the Game was added successfully :) ");
 
 public class GameStoreDemo {
 
@@ -13,7 +15,7 @@ public class GameStoreDemo {
         Admin Ghaida = new Admin("Ghaida", "213");
         GameStore GEA = new GameStore("GEA", Almaha, Eman, Ghaida);
         
-        User Afnan = new User("Norah", 500);
+        User Afnan = new User("Afnan", 500);
         User Sarah = new User("sarah",250.50);
         User Michael = new User("michael", 20);
         User Abdullah = new User("ABDULLAH", 300);
@@ -56,13 +58,13 @@ public class GameStoreDemo {
         int check = 0;
 
         do {
-            System.out.println("DO YOU WANT TO LOG IN AS A(N) .. \n 1- USER \n 2- ADMIN \n 3- CLOSE THE APP");
+            System.out.println("\n DO YOU WANT TO LOG IN AS A(N) .. \n 1- USER \n 2- ADMIN \n 3- CLOSE THE APP");
             try {
                 check = sc.nextInt();
                 sc.nextLine();
 
             } catch (InputMismatchException e) {
-                System.out.println("PLEASE ENTER A DIGIT");
+                System.out.println("\n PLEASE ENTER A DIGIT");
                 sc.next();
                 check = 0;
             }
@@ -80,12 +82,12 @@ public class GameStoreDemo {
                             wallet = sc.nextDouble();
 
                             if (wallet < 0) {
-                                System.out.println("INVALID INPUT, PLEASE ENTER A POSITIVE AMOUNT ");
+                                System.out.println("\n INVALID INPUT, PLEASE ENTER A POSITIVE AMOUNT ");
                             }
                         } catch (InputMismatchException e) {
                             System.out.println("PLEASE ENTER A NUMBER");
                             sc.next();
-                            wallet = -1; // Set waller to -1 to continue loop
+                            wallet = -1; // Set wallet to -1 to continue loop
                         }
                     } while (wallet < 0);
 
@@ -102,7 +104,7 @@ public class GameStoreDemo {
                         try {
                             System.out.println(" \nPLEASE SELECT NUMBER OF SERVICE THAT YOU WANT : ");
                             System.out.println(
-                                    " ************************* \n 1- BUY A GAME \n 2-SEND GIFT TO A FRIEND \n 3-UNINSTALL GAME \n 4- FIND GAME \n 5-SHOW ALL GAMES IN LIBRARY \n 6-SHOW GAMES OF GEA STORE \n 0-LOGOUT ");
+                                    " ********************************* \n \n 1- BUY A GAME \n 2-SEND GIFT TO A FRIEND \n 3-UNINSTALL GAME \n 4- FIND GAME \n 5-SHOW ALL GAMES IN LIBRARY \n 6-SHOW GAMES OF GEA STORE \n 0- LOGOUT ");
                             choice = sc.nextInt();
                             sc.nextLine();
 
@@ -161,12 +163,12 @@ public class GameStoreDemo {
                 } while (choice != 0);
 
             } else if (check == 2) {
-                boolean isAdmin = false;///////////////////EDIT////////////////
+                boolean isAdmin = false;///////////////////EDIT: put in a method////////////////
                 String name = "";
                 boolean userFound = false;
                 while (isAdmin == false) {
 
-                    System.out.println("PLEASE ENTER YOUR NAME :");
+                    System.out.println("\n PLEASE ENTER YOUR NAME :");
                     userFound = false;
                     name = sc.nextLine();
 
@@ -174,7 +176,7 @@ public class GameStoreDemo {
 
                         if (GEA.getAdminList()[i].getUsername().equalsIgnoreCase(name)) {
 
-                            System.out.println("WELCOME BACK!, PLEASE ENTER YOUR PASSWORD");
+                            System.out.println("\n WELCOME BACK!, PLEASE ENTER YOUR PASSWORD");
                             String password = sc.nextLine();
                             userFound = true;
                             if (GEA.getAdminList()[i].getPassword().equals(password)) {
@@ -191,17 +193,17 @@ public class GameStoreDemo {
                 }
                 int choice = 0;
                 do {
-                    System.out.println("HELLO ADMIN " + name + " PLEASE SELECT THE SERVICE THAT YOU WANT ");
+                    System.out.println("\n HELLO ADMIN " + name + " PLEASE SELECT THE SERVICE THAT YOU WANT ");
                     do {
 
                         try {
                             System.out.println(
-                                    " ************************* \n 1- ADD A GAME TO THE STORE  \n 2- REMOVE A GAME FROM THE STORE  \n 3- SEARCH FOR A GAME  \n 4- DISPLAY GAMES  \n 5-LOGOUT");
+                                    " ********************************* \n \n 1- ADD A GAME TO THE STORE  \n 2- REMOVE A GAME FROM THE STORE  \n 3- SEARCH FOR A GAME  \n 4- DISPLAY GAMES \n 5- ADD USER \n 6- REMOVE USER \n 7- DISPLAY ALL USERS  \n 8- LOGOUT");
                             choice = sc.nextInt();
                             sc.nextLine();
 
-                            if (choice < 1 || choice > 5) {
-                                System.out.println("INVALID INPUT , PLEASE ENTER A NUMBER BETWEEN 1 AND 6 ");
+                            if (choice < 1 || choice > 8) {
+                                System.out.println("INVALID INPUT , PLEASE ENTER A NUMBER BETWEEN 1 AND 7 ");
                             }
 
                         } catch (InputMismatchException e) {
@@ -209,13 +211,17 @@ public class GameStoreDemo {
                             sc.next();
                             choice = -1; // Set choice to -1 to continue loop
                         }
-                    } while (choice < 0 || choice > 5);
+                    } while (choice < 1 || choice > 8);
 
                     switch (choice) {
                     case 1:
                         int GGenre = 0;
                         System.out.println("ENTER THE GAME'S NAME");
                         String Gname = sc.nextLine();
+                        if(GEA.gameExists(Gname)==true){
+                            System.out.println("\n the game already exists");
+                            break;
+                        }
                         System.out.println("ENTER THE GAME'S PUBLISHER");
                         String Gpub = sc.nextLine();
                         System.out.println("ENTER THE GAME'S PRICE");
@@ -244,24 +250,34 @@ public class GameStoreDemo {
                         switch (GGenre) {
                         case 1:
                             Game game = new Detective(Gname, Gpub, Gprice);
-                            GEA.addGame(game);
+                            if(GEA.addGame(game)==true){
+                                System.out.println("the Game was added successfully :)");
+                            }
                             break;
                         case 2:
                             game = new Horror(Gname, Gpub, Gprice);
-                            GEA.addGame(game);
+                            if(GEA.addGame(game)==true){
+                                System.out.println("the Game was added successfully :)");
+                            }                            
                             break;
                         case 3:
                             game = new RPG(Gname, Gpub, Gprice);
-                            GEA.addGame(game);
+                            if(GEA.addGame(game)==true){
+                                System.out.println("the Game was added successfully :)");
+                            }                            
                             break;
                         case 4:
                             game = new StoryRich(Gname, Gpub, Gprice);
-                            GEA.addGame(game);
+                            if(GEA.addGame(game)==true){
+                                System.out.println("the Game was added successfully :)");
+                            }                            
                             break;
                         case 5:
                             game = new Survival(Gname, Gpub, Gprice);
-                            GEA.addGame(game);
-                        }
+                            if(GEA.addGame(game)==true){
+                                System.out.println("the Game was added successfully :)");
+                            }                            
+                            break;                        }
                         break;
                     case 2:
                         System.out.println("ENTER THE GAME'S NAME");
@@ -278,9 +294,30 @@ public class GameStoreDemo {
                         GEA.displayGames();
                         break;
                     case 5:
+                    System.out.println("Enter a username for the user you want to add");
+                    String Uname = sc.nextLine();
+                    if(GEA.userExists(Uname)){
+                    break;}
+                    System.out.println("Enter a wallet amount");
+                    double Uwallet = sc.nextDouble();
+                        sc.nextLine();
+                    User u2 = new User(Uname, Uwallet);
+                    if(GEA.addUser(u2)==true){
+                        System.out.println("the User was added successfully :)");
+                    }                            
+                    break;
+                    case 6:
+                    System.out.println("Enter a username for the user you want to remove");
+                    String Rname = sc.nextLine();
+                    GEA.removeUser(Rname);
+                    break;
+                    case 7 :
+                    GEA.displayAllUsers();
+                    break;
+                    case 8:
                         break;
                     }
-                } while (choice != 5);
+                } while (choice != 8);
             } else if (check != 3)
 
                 System.out.println("invalid input, try again..");
@@ -289,3 +326,10 @@ public class GameStoreDemo {
 
     }
 }
+/////*DEBUG REMOVE GAME (null exception) & SEARCH H8T ADMIN
+/// print statement after a successful purchase
+///print user info 
+///tnsee8 tostring
+//*buy game check if exist
+//find game change exist to found
+//price formatting printf

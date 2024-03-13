@@ -27,6 +27,6 @@ public abstract class Game {
 	}
 
 	public String toString() {
-		return "Game name: " + name + "\nGame publisher: " + publisher + "\nGame price: " + price + "\n\n";
+		return "Game name: " + name + "\nGame publisher: " + publisher + "\nGame price: " + price + "\nPrice after discount: " + priceAfterDiscount() + "\n\n";
 	}
 }

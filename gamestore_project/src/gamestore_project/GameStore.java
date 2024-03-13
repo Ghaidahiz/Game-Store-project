@@ -22,30 +22,46 @@ public class GameStore {
       noGames = 0;
    }
 
-   public void addUser(User u) {
+   public boolean userExists(User u) {
       for (int i = 0; i < noUsers; i++) {
-         if (userList[i] == u) { // to check if the user is already exist in the array or not , because we dont
-                                 // want to add a user twice.
-            System.out.println("can  not add user because it's already exist in Game Stors");
-            return;
-         }
-         if (userList[i].getUsername().equals(u.getUsername())) { // to check the uniqness of username.
-            System.out.println("can not add user ,the username is used by another user please try another one");
-            return;
+
+         if (userList[i].getUsername().equalsIgnoreCase(u.getUsername())) { // to check the uniqness of username.
+            System.out.println("the username already exists");
+            return true;
          }
       }
-      if (noUsers < userList.length) {
-         userList[noUsers++] = u;
-         System.out.println("the user was added successfully :) ");
-      } else
-         System.out.println("can not add user -the array is full- :( ");
+      return false;
+   }
+   public boolean userExists(String user) {
+      for (int i = 0; i < noUsers; i++) {
+
+         if (userList[i].getUsername().equalsIgnoreCase(user)) { // to check the uniqness of username.
+            System.out.println("the username already exists");
+            return true;
+         }
+      }
+      return false;
+   }
+
+   public boolean addUser(User u) {
+      if (!userExists(u)) {
+         if (noUsers < userList.length) {
+            userList[noUsers++] = u;
+            return true;
+         } else
+            System.out.println("can not add user -the store is busy- :( ");
+         return false;
+      } else {
+         System.out.println("the username already exists");
+         return false;
+      }
    }
 
    public void removeUser(String username) {
       boolean exist = false;
       int i;
       for (i = 0; i < noUsers; i++)
-         if (userList[i].getUsername().equals(username)) {
+         if (userList[i].getUsername().equalsIgnoreCase(username)) {
             exist = true;
             break;
          }
@@ -55,7 +71,7 @@ public class GameStore {
          noUsers--;
          System.out.println("the user -" + username + "- was removed successfully");
       } else
-         System.out.println(" remove fail -can not find user with this username: " + username + " -");
+         System.out.println(" remove failed -can not find user with this username: " + username + " -");
    }
 
    public User findUser(String username) {
@@ -66,40 +82,57 @@ public class GameStore {
       return null;
    }
 
-   private boolean checkGame(String name) {
-      for (int i = 0; i < noGames; i++)
-         if (gameList[i].getName().equals(name))
-            return false;
-      return true;
+   public boolean gameExists(String name) {
+      for (int i = 0; i < noGames; i++){
+         if (gameList[i].getName().equalsIgnoreCase(name))
+            return true;}
+      return false;
 
    }
 
-   public void addGame(Game g) {
-      if (checkGame(name)) {
+   public boolean addGame(Game g) {
          if (noGames < gameList.length) {
-            if (g instanceof Detective)
+            if (g instanceof Detective) {
                gameList[noGames++] = new Detective(g);
-            else if (g instanceof RPG)
-               gameList[noGames++] = new RPG(g);
-            else if (g instanceof StoryRich)
-               gameList[noGames++] = new StoryRich(g);
-            else if (g instanceof Horror)
-               gameList[noGames++] = new Horror(g);
-            else if (g instanceof Survival)
-               gameList[noGames++] = new Survival(g);
-            System.out.println("the Game was added successfully :) ");
-         }
+               return true;
+            }
 
-         else
-            System.out.println("can not add Game -the array is full- :( ");
-      }
+            else if (g instanceof RPG) {
+               gameList[noGames++] = new RPG(g);
+               return true;
+            }
+
+            else if (g instanceof StoryRich) {
+               gameList[noGames++] = new StoryRich(g);
+               return true;
+            }
+
+            else if (g instanceof Horror) {
+               gameList[noGames++] = new Horror(g);
+               return true;
+            }
+
+            else if (g instanceof Survival) {
+               gameList[noGames++] = new Survival(g);
+               return true;
+            }
+            else{
+               return false; //not one of the genres "impossible, but we have to cover all cases"
+            }
+         }
+         else{
+            System.out.println("can not add Game -the store is full- :( ");
+            return false;
+         }
+     
+      
    }
 
    public boolean removeGame(String name) {
       boolean exist = false;
       int i;
       for (i = 0; i < noGames; i++)
-         if (gameList[i].getName().equals(name)) {
+         if (gameList[i].getName().equalsIgnoreCase(name)) {
             exist = true;
             break;
          }
@@ -116,7 +149,7 @@ public class GameStore {
    public Game searchForGame(String name) {
 
       for (int i = 0; i < noGames; i++)
-         if (gameList[i].getName().equals(name))
+         if (gameList[i].getName().equalsIgnoreCase(name))
             return gameList[i];
 
       System.out.println("cant not find game with the received name :(");
@@ -282,5 +315,12 @@ public class GameStore {
          break;
       }
    }
+  
+   public void displayAllUsers(){
+		for(int i=0; i<noUsers;i++){
+         System.out.println("\n " + userList[i].toString());
 
+      }
+
+	}
 }

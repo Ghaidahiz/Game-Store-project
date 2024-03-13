@@ -86,6 +86,7 @@ public class User {
 		String gamesInLibrary="";
 		for(int i=0;i<numberOfGames;i++)
 			gamesInLibrary+=gameLibrary[i].toString();
-		return "\nUsername: "+username+"\nThe amount of funds in your wallet: "+wallet+"\n Number of games in your library: "+numberOfGames+"Games in your library:\n"+gamesInLibrary;
+		return "\nUsername: "+username+"\nThe amount of funds in wallet: "+wallet+"\n Number of games in library: "+numberOfGames+" Games in your library:\n"+gamesInLibrary;
 	}
+	
 }
