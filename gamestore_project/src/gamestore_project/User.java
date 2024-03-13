@@ -17,6 +17,7 @@ public class User {
 		boolean count = false;
 		if (g == null) {
 			System.out.println("the game that you want to purchase doesn't exist in this gamestore");
+			return ;  // to avoid using g if it's null
 		}
 		
 			else{
@@ -98,7 +99,6 @@ public class User {
 		String gamesInLibrary="";
 		for(int i=0;i<numberOfGames;i++)
 			gamesInLibrary+=gameLibrary[i].toString();
-		return "\nUsername: "+username+" \n \n The amount of funds in wallet: "+wallet+"\n \n Number of games in library: ("+numberOfGames+") Games in your library:\n \n "+gamesInLibrary;
-	}
+			return "\n Username: "+username+"\n The amount of funds in wallet: "+wallet+"\n Number of games in library: ("+numberOfGames+") Games in library:\n \n "+gamesInLibrary;	}
 	
 }

@@ -156,7 +156,7 @@ public class GameStoreDemo {
 
                         case 7:
                     
-                        System.out.println( GEA.findUser(name).toString());
+                        System.out.println( GEA.findUser(name));
                         break;
 
                     case 0:
@@ -166,46 +166,20 @@ public class GameStoreDemo {
                 } while (choice != 0);
 
             } else if (check == 2) {
-                boolean isAdmin = false;///////////////////EDIT: put in a method////////////////
-                String name = "";
-                boolean userFound = false;
-                while (isAdmin == false) {
-
-                    System.out.println("\n PLEASE ENTER YOUR NAME :");
-                    userFound = false;
-                    name = sc.nextLine();
-
-                    for (int i = 0; i < GEA.getAdminList().length; i++) {
-
-                        if (GEA.getAdminList()[i].getUsername().equalsIgnoreCase(name)) {
-
-                            System.out.println("\n WELCOME BACK!, PLEASE ENTER YOUR PASSWORD");
-                            String password = sc.nextLine();
-                            userFound = true;
-                            if (GEA.getAdminList()[i].getPassword().equals(password)) {
-                                isAdmin = true;
-                                break;
-                            } else
-                                System.out.println("INCORRECT PASSWORD");
-                        }
-
-                    }
-                    if (userFound == false) {
-                        System.out.println("INCORRECT USERNAME, PLEASE TRY AGAIN");
-                    }
-                }
+                if(GEA.adminExists()){
+               
                 int choice = 0;
                 do {
-                    System.out.println("\n HELLO ADMIN " + name + " PLEASE SELECT THE SERVICE THAT YOU WANT ");
+                    System.out.println(" PLEASE SELECT THE SERVICE THAT YOU WANT ");
                     do {
 
                         try {
                             System.out.println(
-                                    " ********************************* \n \n 1- ADD A NEW GAME TO THE STORE  \n 2- REMOVE A GAME FROM THE STORE  \n 3- SEARCH FOR A GAME IN THE STORE \n 4- DISPLAY GAMES IN THE STORE \n 5- ADD A NEW USER \n 6- REMOVE A USER \n 7- DISPLAY ALL USERS  \n 8- LOGOUT");
+                                    " ********************************* \n \n 1- ADD A NEW GAME TO THE STORE  \n 2- REMOVE A GAME FROM THE STORE  \n 3- SEARCH FOR A GAME IN THE STORE \n 4- DISPLAY GAMES IN THE STORE \n 5- ADD A NEW USER \n 6- REMOVE A USER \n 7- DISPLAY ALL USERS  \n 8-SEARCH FOR CERTAIN USER \n 9- LOGOUT");
                             choice = sc.nextInt();
                             sc.nextLine();
 
-                            if (choice < 1 || choice > 8) {
+                            if (choice < 1 || choice > 9) {
                                 System.out.println("INVALID INPUT , PLEASE ENTER A NUMBER BETWEEN 1 AND 7 ");
                             }
 
@@ -214,7 +188,7 @@ public class GameStoreDemo {
                             sc.next();
                             choice = -1; // Set choice to -1 to continue loop
                         }
-                    } while (choice < 1 || choice > 8);
+                    } while (choice < 1 || choice > 9);
 
                     switch (choice) {
                     case 1:
@@ -317,10 +291,19 @@ public class GameStoreDemo {
                     case 7 :
                     GEA.displayAllUsers();
                     break;
-                    case 8:
+                    case 8:{
+                    	System.out.println("ENTER USERNAME OF THE USER YOU'R LOOKING FOR");
+                    	String username=sc.nextLine();
+                        if(GEA.userExists(username))
+                    	System.out.println(GEA.findUser(username));
+                        else 
+                        System.out.println(username+"is not found in this store");
+                    	break;}
+                    case 9:
                         break;
                     }
-                } while (choice != 8);
+                } while (choice != 9);
+             }
             } else if (check != 3)
 
                 System.out.println("invalid input, try again..");

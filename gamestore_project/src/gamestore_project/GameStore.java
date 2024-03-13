@@ -82,11 +82,50 @@ public class GameStore {
       return null;
    }
 
-   public void AdminExists()
-   {
+   public boolean adminExists(){
+      boolean adminExist=false;
+      int i, numOfTry=0;
+      String name;
+      do{
+          
+      System.out.println("\n PLEASE ENTER YOUR NAME :");
+      name=sc.next();
+      sc.nextLine();
+      for(i=0; i<adminList.length;i++)
+      if (adminList[i].getUsername().equalsIgnoreCase(name)) {
+         adminExist=true;
+         break;}
+      if(!adminExist){
+         System.out.println(" INCORRECT USERNAME, PLEASE TRY AGAIN");
+         numOfTry++;
+         continue;}
+      else{
+         System.out.println("\n WELCOME BACK!, PLEASE ENTER YOUR PASSWORD");
+         String password=sc.nextLine();
+         if(adminList[i].getPassword().equals(password))
+           break;
+         else{
+            System.out.println("INCORRECT PASSWORD");{
+            numOfTry++;
+            adminExist=false;}
+         }
 
+      }
+      
+      } while(!adminExist&& numOfTry<3);
+      if(adminExist){
+         System.out.print(" HELLO ADMIN "+name+ " :)");
+      return true;}
+      else {
+         System.out.println("\n SORRY YOU HAVE EXCEEDED THE NUMBER OF ALLOWABLE ATTEMPTS :(");
+         return false;
+      }
 
    }
+   
+      
+
+   
 
    public boolean gameExists(String name) {
       for (int i = 0; i < noGames; i++){
