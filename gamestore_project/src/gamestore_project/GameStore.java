@@ -82,6 +82,12 @@ public class GameStore {
       return null;
    }
 
+   public void AdminExists()
+   {
+
+
+   }
+
    public boolean gameExists(String name) {
       for (int i = 0; i < noGames; i++){
          if (gameList[i].getName().equalsIgnoreCase(name))
@@ -127,8 +133,8 @@ public class GameStore {
      
       
    }
-
-   public boolean removeGame(String name) {
+ 
+   public void removeGame(String name) {
       boolean exist = false;
       int i;
       for (i = 0; i < noGames; i++)
@@ -137,13 +143,13 @@ public class GameStore {
             break;
          }
       if (exist) {
-         gameList[i] = gameList[noGames--];
-         gameList[noGames] = null;
+         gameList[i] = gameList[noGames- 1];
+         gameList[noGames - 1] = null;
+         noGames--;
          System.out.println("the Game -" + name + "- was removed successfully");
-         return true;
+      
       } else
          System.out.println(" remove fail -can not find Game with this name: " + name + " -");
-      return false;
    }
 
    public Game searchForGame(String name) {

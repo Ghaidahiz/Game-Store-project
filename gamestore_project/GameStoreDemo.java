@@ -1,8 +1,6 @@
 package gamestore_project;
 
 import java.util.*;
-         ///System.out.println("the user was added successfully :) ");
-         /// System.out.println("the Game was added successfully :) ");
 
 public class GameStoreDemo {
 
@@ -104,11 +102,11 @@ public class GameStoreDemo {
                         try {
                             System.out.println(" \nPLEASE SELECT NUMBER OF SERVICE THAT YOU WANT : ");
                             System.out.println(
-                                    " ********************************* \n \n 1- BUY A GAME \n 2-SEND GIFT TO A FRIEND \n 3-UNINSTALL GAME \n 4- FIND GAME \n 5-SHOW ALL GAMES IN LIBRARY \n 6-SHOW GAMES OF GEA STORE \n 0- LOGOUT ");
+                                    " ********************************* \n \n 1- BUY A GAME \n 2-SEND GIFT TO A FRIEND \n 3-UNINSTALL A GAME \n 4- FIND A GAME IN YOUR LIBRARY  \n 5-SHOW ALL GAMES IN LIBRARY \n 6-SHOW GAMES OF GEA STORE \n 7- DISPLAY YOUR PERSONAL INFORMATION \n 0- LOGOUT ");
                             choice = sc.nextInt();
                             sc.nextLine();
 
-                            if (choice < 0 || choice > 6) {
+                            if (choice < 0 || choice > 7) {
                                 System.out.println("INVALID INPUT , PLEASE ENTER A NUMBER BETWEEN 0 AND 6 ");
                             }
                         } catch (InputMismatchException e) {
@@ -116,11 +114,11 @@ public class GameStoreDemo {
                             sc.next();
                             choice = -1; // Set choice to -1 to continue loop
                         }
-                    } while (choice < 0 || choice > 6);
+                    } while (choice < 0 || choice > 7);
 
                     switch (choice) {
                     case 1:
-                        System.out.println("ENTER THE NAME OF THE GAME ..");
+                        System.out.println("ENTER THE NAME OF THE GAME YOU WANT TO PURCHASE ..");
                         String Gname = sc.nextLine();
                         (GEA.findUser(name)).buyGame(GEA.searchForGame(Gname));
                         break;
@@ -146,7 +144,7 @@ public class GameStoreDemo {
                         break;
 
                     case 5:
-                        System.out.println("THESE ARE YOUR LIBRARY'S GAMES:");
+                        System.out.println("THESE ARE YOUR LIBRARY'S GAMES: \n ");
                         Game[] library = (GEA.findUser(name)).getGameLibrary();
                         for (int i = 0; i < (GEA.findUser(name)).getNumberOfGames(); i++)
                             System.out.println(library[i]);
@@ -154,6 +152,11 @@ public class GameStoreDemo {
 
                     case 6:
                         GEA.displayGames();
+                        break;
+
+                        case 7:
+                    
+                        System.out.println( GEA.findUser(name).toString());
                         break;
 
                     case 0:
@@ -198,7 +201,7 @@ public class GameStoreDemo {
 
                         try {
                             System.out.println(
-                                    " ********************************* \n \n 1- ADD A GAME TO THE STORE  \n 2- REMOVE A GAME FROM THE STORE  \n 3- SEARCH FOR A GAME  \n 4- DISPLAY GAMES \n 5- ADD USER \n 6- REMOVE USER \n 7- DISPLAY ALL USERS  \n 8- LOGOUT");
+                                    " ********************************* \n \n 1- ADD A NEW GAME TO THE STORE  \n 2- REMOVE A GAME FROM THE STORE  \n 3- SEARCH FOR A GAME IN THE STORE \n 4- DISPLAY GAMES IN THE STORE \n 5- ADD A NEW USER \n 6- REMOVE A USER \n 7- DISPLAY ALL USERS  \n 8- LOGOUT");
                             choice = sc.nextInt();
                             sc.nextLine();
 
@@ -286,7 +289,7 @@ public class GameStoreDemo {
 
                         break;
                     case 3:
-                        System.out.println("ENTER THE GAME'S NAME");
+                        System.out.println("ENTER THE GAME'S NAME \n ");
                         Gname = sc.nextLine();
                         System.out.println(GEA.searchForGame(Gname));
                         break;
@@ -307,7 +310,7 @@ public class GameStoreDemo {
                     }                            
                     break;
                     case 6:
-                    System.out.println("Enter a username for the user you want to remove");
+                    System.out.println("Enter the username of the user you want to remove");
                     String Rname = sc.nextLine();
                     GEA.removeUser(Rname);
                     break;
@@ -326,10 +329,11 @@ public class GameStoreDemo {
 
     }
 }
-/////*DEBUG REMOVE GAME (null exception) & SEARCH H8T ADMIN
-/// print statement after a successful purchase
-///print user info 
-///tnsee8 tostring
-//*buy game check if exist
-//find game change exist to found
-//price formatting printf
+/////*DEBUG REMOVE GAME (null exception)(DONE) 
+//& SEARCH H8T ADMIN (DONE?)
+/// print statement after a successful purchase (DONE)
+///print user info (DONE)
+///tnsee8 tostring(DONE IG)
+//*buy game check if exist (DOOONE!!)
+//find game change exist to found (DONE )
+//price formatting printf (DOONEE!!!)

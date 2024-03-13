@@ -14,15 +14,27 @@ public class User {
 	}
 
 	public void buyGame(Game g) {
+		boolean count = false;
 		if (g == null) {
 			System.out.println("the game that you want to purchase doesn't exist in this gamestore");
 		}
-		else if (g.priceAfterDiscount() <= wallet) {
+		
+			else{
+				 for( int i=0 ; i< numberOfGames ; i++){
+		if(gameLibrary[i].getName().equalsIgnoreCase(g.getName()))
+		count=true;
+		System.out.println(" \n SORRY , BUT THIS GAME IS ALREADY EXISTS IN YOUR LIBRARY :/ "); }}
+		
+        if(count == false){
+		   if (g.priceAfterDiscount() <= wallet) {
 			gameLibrary[numberOfGames++] = g;
 			wallet = wallet - g.priceAfterDiscount();
+			System.out.println("\n THANK YOU FOR PURCHASING "+ g.getName()+"!!");
+
 		} else {
-			System.out.println("You don't have enough funds in your wallet, can't complete purchase");
-		}
+			System.out.println( "\n You don't have enough funds in your wallet, can't complete purchase :( ");
+		}}
+		//else System.out.println(" \n SORRY , BUT THIS GAME IS ALREADY EXISTS IN YOUR LIBRARY :/ ");
 
 	}
 
@@ -60,7 +72,7 @@ public class User {
 	public Game findGame(String name) {
 		for (int i = 0; i < numberOfGames; i++) {
 			if (gameLibrary[i].getName().equalsIgnoreCase(name)) {
-				System.out.println(name + " exists in your library");
+				System.out.println(name + " Has been found in your library");
 				return gameLibrary[i];
 			}
 
@@ -86,7 +98,7 @@ public class User {
 		String gamesInLibrary="";
 		for(int i=0;i<numberOfGames;i++)
 			gamesInLibrary+=gameLibrary[i].toString();
-		return "\nUsername: "+username+"\nThe amount of funds in wallet: "+wallet+"\n Number of games in library: "+numberOfGames+" Games in your library:\n"+gamesInLibrary;
+		return "\nUsername: "+username+" \n \n The amount of funds in wallet: "+wallet+"\n \n Number of games in library: ("+numberOfGames+") Games in your library:\n \n "+gamesInLibrary;
 	}
 	
 }
