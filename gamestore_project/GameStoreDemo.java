@@ -180,7 +180,7 @@ public class GameStoreDemo {
                             sc.nextLine();
 
                             if (choice < 1 || choice > 9) {
-                                System.out.println("INVALID INPUT , PLEASE ENTER A NUMBER BETWEEN 1 AND 7 ");
+                                System.out.println("INVALID INPUT , PLEASE ENTER A NUMBER BETWEEN 1 AND 9 ");
                             }
 
                         } catch (InputMismatchException e) {
@@ -292,12 +292,12 @@ public class GameStoreDemo {
                     GEA.displayAllUsers();
                     break;
                     case 8:{
-                    	System.out.println("ENTER USERNAME OF THE USER YOU'R LOOKING FOR");
+                    	System.out.println("ENTER USERNAME OF THE USER YOU'RE LOOKING FOR");
                     	String username=sc.nextLine();
                         if(GEA.userExists(username))
                     	System.out.println(GEA.findUser(username));
                         else 
-                        System.out.println(username+"is not found in this store");
+                        System.out.println(username+"was not found in this store");
                     	break;}
                     case 9:
                         break;
