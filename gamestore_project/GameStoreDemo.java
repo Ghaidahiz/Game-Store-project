@@ -52,7 +52,7 @@ public class GameStoreDemo {
         
 
 
-        System.out.println("GEA GAME STORE");
+        System.out.println("\nGEA GAME STORE\n~*~*~*~*~*~*~*~");
         int check = 0;
 
         do {
