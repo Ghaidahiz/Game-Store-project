@@ -11,7 +11,7 @@ public class GameStoreDemo {
         Admin Almaha = new Admin("Almaha", "123");
         Admin Eman = new Admin("Eman", "321");
         Admin Ghaida = new Admin("Ghaida", "213");
-        GameStore GEA = new GameStore("GEA", Almaha, Eman, Ghaida,100,50);
+        GameStore GEA = new GameStore("GEA", Almaha, Eman, Ghaida,200,100);
         
         User Afnan = new User("Afnan", 500);
         User Sarah = new User("sarah",250.50);
@@ -59,9 +59,11 @@ public class GameStoreDemo {
             System.out.println("\n DO YOU WANT TO LOG IN AS A(N) .. \n\n 1- USER \n 2- ADMIN \n 3- CLOSE THE APP \n");
             try {
                 check = sc.nextInt();
+                sc.nextLine();
+
 
             } catch (InputMismatchException e) {
-                sc.nextLine();
+                sc.next();
                 check = 0;
             }
             User u1;
@@ -82,7 +84,7 @@ public class GameStoreDemo {
                             }
                         } catch (InputMismatchException e) {
                             System.out.println("\nINVALID INPUT, PLEASE ENTER A NUMBER \n");
-                            sc.nextLine();
+                            sc.next();
                             wallet = -1; // Set wallet to -1 to continue loop
                         }
                     } while (wallet < 0);
@@ -109,7 +111,7 @@ public class GameStoreDemo {
                             }
                         } catch (InputMismatchException e) {
                             System.out.println("INVALID INPUT, PLEASE ENTER A DIGIT");
-                            sc.nextLine();
+                            sc.next();
                             choice = -1; // Set choice to -1 to continue loop
                         }
                     } while (choice < 0 || choice > 7);
@@ -191,7 +193,7 @@ public class GameStoreDemo {
 
                         } catch (InputMismatchException e) {
                             System.out.println("INVALID INPUT, PLEASE ENTER A DIGIT");
-                            sc.nextLine();
+                            sc.next();
                             choice = -1; // Set choice to -1 to continue loop
                         }
                     } while (choice < 1 || choice > 9);
@@ -218,7 +220,7 @@ public class GameStoreDemo {
                             }
                         } catch (InputMismatchException e) {
                             System.out.println("\nINVALID INPUT, PLEASE ENTER A NUMBER \n");
-                            sc.nextLine();
+                            sc.next();
                             Gprice = -1; // Set Gprice to -1 to continue loop
                         }
                     } while (Gprice < 0);
@@ -237,7 +239,7 @@ public class GameStoreDemo {
 
                             } catch (InputMismatchException e) {
                                 System.out.println("INVALID INPUT, PLEASE ENTER A DIGIT");
-                                sc.nextLine();
+                                sc.next();
                                 GGenre = -1; // Set GGenre to -1 to continue loop
                             }
                         } while (GGenre < 1 || GGenre > 5);
@@ -305,7 +307,7 @@ public class GameStoreDemo {
                             }
                         } catch (InputMismatchException e) {
                             System.out.println("\nINVALID INPUT, PLEASE ENTER A NUMBER \n");
-                            sc.nextLine();
+                            sc.next();
                             Uwallet = -1; // Set Uwallet to -1 to continue loop
                         }
                     } while (Uwallet < 0);
@@ -343,3 +345,6 @@ public class GameStoreDemo {
 
     }
 }
+//test the program please @Eman
+//we only have documentation + report + UML left to do
+//we removed userExists(user u), we still have userExists(String user)

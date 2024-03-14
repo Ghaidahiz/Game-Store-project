@@ -33,58 +33,64 @@ public class User {
 		}
 
 		if (existsInLibrary == false) {
-			if (g.priceAfterDiscount() <= wallet) {
-				gameLibrary[numberOfGames++] = g;
-				wallet = wallet - g.priceAfterDiscount();
-				System.out.println("\n THANK YOU FOR PURCHASING " + g.getName() + "!!");
+			if (numberOfGames < gameLibrary.length) {
+				if (g.priceAfterDiscount() <= wallet) {
+					gameLibrary[numberOfGames++] = g;
+					wallet = wallet - g.priceAfterDiscount();
+					System.out.println("\n THANK YOU FOR PURCHASING " + g.getName() + "!!");
 
-			} else {
-				System.out.println("\n YOU DON'T HAVE ENOUGH FUNDS IN YOUR WALLET, CAN'T COMPLETE PURCHASE :( ");
-			}
+				} else {
+					System.out.println("\n YOU DON'T HAVE ENOUGH FUNDS IN YOUR WALLET, CAN'T COMPLETE PURCHASE :( ");
+				}
+			} else
+				System.out.println("\nSORRY, YOUR LIBRARY IS FULL");
 		}
-		// else System.out.println(" \n SORRY , BUT THIS GAME IS ALREADY EXISTS IN YOUR
-		// LIBRARY :/ ");
 
 	}
-	
+
 	public void sendGift(User friend, Game g) {
 		boolean existsInLibrary = false;
-		if (g == null || friend == null){
-			return;}
+		if (g == null || friend == null) {
+			return;
+		}
 
 		else {
 			for (int i = 0; i < friend.numberOfGames; i++) {
 				if (friend.gameLibrary[i].getName().equalsIgnoreCase(g.getName())) {
 					existsInLibrary = true;
-					System.out.println(" \n SORRY, BUT THIS GAME ALREADY EXISTS IN " + friend.getUsername() +  " LIBRARY :/ ");
+					System.out.println(
+							" \n SORRY, BUT THIS GAME ALREADY EXISTS IN " + friend.getUsername() + " LIBRARY :/ ");
 				}
 			}
 		}
 
 		if (existsInLibrary == false) {
-			if (g.priceAfterDiscount() <= wallet) {
-				friend.gameLibrary[friend.numberOfGames++] = g;
-				wallet = wallet - g.priceAfterDiscount();
-				System.out.println("\n YOUR GIFT ( "+ g.getName() +" ) WAS SENT SUCCESSFULLY TO " + friend.getUsername() +" !!");
+			if (friend.numberOfGames < friend.gameLibrary.length) {
+				if (g.priceAfterDiscount() <= wallet) {
+					friend.gameLibrary[friend.numberOfGames++] = g;
+					wallet = wallet - g.priceAfterDiscount();
+					System.out.println("\n YOUR GIFT ( " + g.getName() + " ) WAS SENT SUCCESSFULLY TO "
+							+ friend.getUsername() + " !!");
 
-			} else {
-				System.out.println("\n YOU DON'T HAVE ENOUGH FUNDS IN YOUR WALLET, CAN'T COMPLETE PURCHASE :( ");
-			}}
-		}
-	/* 	if (friend.numberOfGames < friend.gameLibrary.length) {
-			if (g.priceAfterDiscount() <= wallet) {
-				friend.gameLibrary[friend.numberOfGames++] = g;
-				this.wallet = this.wallet - g.priceAfterDiscount();
-			} else {
-				System.out.println("You don't have enough funds in your wallet, can't complete purchase");
-			}
-		} else {
-			System.out.println("the recipient's library is full");
-			
-
+				} else {
+					System.out.println("\n YOU DON'T HAVE ENOUGH FUNDS IN YOUR WALLET, CAN'T COMPLETE PURCHASE :( ");
+				}
+			} else
+				System.out.println("\nTHE RECIPIENT'S LIBRARY IS FULL");
 		}
 	}
-*/
+
+	/*
+	 * if (friend.numberOfGames < friend.gameLibrary.length) { if
+	 * (g.priceAfterDiscount() <= wallet) {
+	 * friend.gameLibrary[friend.numberOfGames++] = g; this.wallet = this.wallet -
+	 * g.priceAfterDiscount(); } else { System.out.
+	 * println("You don't have enough funds in your wallet, can't complete purchase"
+	 * ); } } else { System.out.println("the recipient's library is full");
+	 * 
+	 * 
+	 * } }
+	 */
 	public void removeGameFromLibrary(String name) {
 		System.out.println(
 				"\n the game is not refundable, once you remove a game you will lose access to it unless you buy it again..\n");
@@ -139,7 +145,9 @@ public class User {
 		String sWallet = wallet + "";
 		for (int i = 0; i < numberOfGames; i++)
 			gamesInLibrary += gameLibrary[i].toString();
-		return "\n ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ \n USERNAME: " + username + "\n THE AMOUNT OF FUNDS IN WALLET: " + sWallet.substring(0,(sWallet.indexOf('.')+2))
-				+ "\n THE NUMBER OF GAMES IN LIBRARY IS: ( " + numberOfGames + " ) \n \n THE GAMES IN LIBRARY ARE: : \n" + gamesInLibrary + " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~";
+		return "\n ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ \n USERNAME: " + username + "\n THE AMOUNT OF FUNDS IN WALLET: "
+				+ sWallet.substring(0, (sWallet.indexOf('.') + 2)) + "\n THE NUMBER OF GAMES IN LIBRARY IS: ( "
+				+ numberOfGames + " ) \n \n THE GAMES IN LIBRARY ARE: : \n" + gamesInLibrary
+				+ " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~";
 	}
 }

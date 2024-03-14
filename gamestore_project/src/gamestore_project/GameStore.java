@@ -24,16 +24,7 @@ public class GameStore {
       gameList = new Game[Gsize];
    }
 
-   public boolean userExists(User u) {
-      for (int i = 0; i < noUsers; i++) {
-
-         if (userList[i].getUsername().equalsIgnoreCase(u.getUsername())) { // to check the uniqness of username.
-            System.out.println("THE USERNAME ALREADY EXISTS");
-            return true;
-         }
-      }
-      return false;
-   }
+   
 
    public boolean userExists(String user) {
       for (int i = 0; i < noUsers; i++) {
@@ -47,7 +38,7 @@ public class GameStore {
    }
 
    public boolean addUser(User u) {
-      if (!userExists(u)) {
+      if (!userExists(u.getUsername())) {
          if (noUsers < userList.length) {
             userList[noUsers++] = u;
             return true;
@@ -319,6 +310,7 @@ public class GameStore {
             System.out.println(
                   " ~~~~~~~~~~~~~~~~~~~~~~ \n 1-ALL GAMES. \n 2-RPG GAMES. \n 3-DETECTIVE GAMES. \n 4-HORROR GAMES. \n 5-STORY RICH GAMES. \n 6-SURVIVAL GAMES. ");
             selection = sc.nextInt();
+            sc.nextLine();
 
             if (selection < 1 || selection > 6) {
                System.out.println("INVALID INPUT , PLEASE ENTER A NUMBER BETWEEN 0 AND 6 ");
