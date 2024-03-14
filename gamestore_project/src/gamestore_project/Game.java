@@ -27,6 +27,7 @@ public abstract class Game {
 	}
 
 	public String toString() {
-		return "Game name: " + name + "\nGame publisher: " + publisher + "\nGame price: " + price + "\nPrice after discount: " + String.format("%.2f",priceAfterDiscount()) + "\n\n";
+		 String sPrice =priceAfterDiscount() + "";
+		return "\n ~*~*~*~*~*~*~*~*~*~*~*~*~*~*~ \n GAME NAME: " + name + "\n GAME PUBLISHER: " + publisher + "\n GAME PRICE: " + price + "\n PRICE AFTER DISCOUNT: " + sPrice.substring(0,(sPrice.indexOf('.')+2))+ "\n ~*~*~*~*~*~*~*~*~*~*~*~*~*~*~ \n";
 	}
 }
