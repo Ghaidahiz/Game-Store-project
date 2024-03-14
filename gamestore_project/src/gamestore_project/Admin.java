@@ -1,6 +1,8 @@
 package gamestore_project;
 
-public class Admin {
+public class Admin { 
+    // Admin a a class for the admins of the game store, it has a constructor that sets
+    // values for the attribuites and it has getters
     private String username;
     private String password;
 

@@ -24,8 +24,6 @@ public class GameStore {
       gameList = new Game[Gsize];
    }
 
-   
-
    public boolean userExists(String user) {
       for (int i = 0; i < noUsers; i++) {
 
@@ -112,13 +110,13 @@ public class GameStore {
                }
 
             }
-         }
-         else back = true;
-      } while (!adminExist && numOfTry < 3 && back==false);
+         } else
+            back = true;
+      } while (!adminExist && numOfTry < 3 && back == false);
       if (adminExist) {
          System.out.print(" HELLO ADMIN " + name + " :)");
          return true;
-      } else if(numOfTry >= 3) {
+      } else if (numOfTry >= 3) {
          System.out.println("\n SORRY YOU HAVE EXCEEDED THE NUMBER OF ALLOWABLE ATTEMPTS :(");
          return false;
       }
