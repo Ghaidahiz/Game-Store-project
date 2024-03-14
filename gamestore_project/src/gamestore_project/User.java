@@ -80,17 +80,7 @@ public class User {
 		}
 	}
 
-	/*
-	 * if (friend.numberOfGames < friend.gameLibrary.length) { if
-	 * (g.priceAfterDiscount() <= wallet) {
-	 * friend.gameLibrary[friend.numberOfGames++] = g; this.wallet = this.wallet -
-	 * g.priceAfterDiscount(); } else { System.out.
-	 * println("You don't have enough funds in your wallet, can't complete purchase"
-	 * ); } } else { System.out.println("the recipient's library is full");
-	 * 
-	 * 
-	 * } }
-	 */
+
 	public void removeGameFromLibrary(String name) {
 		if(findGame(name)!=null){
 		System.out.println(
