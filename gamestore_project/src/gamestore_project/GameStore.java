@@ -313,7 +313,7 @@ public class GameStore {
             sc.nextLine();
 
             if (selection < 1 || selection > 6) {
-               System.out.println("INVALID INPUT , PLEASE ENTER A NUMBER BETWEEN 0 AND 6 ");
+               System.out.println("INVALID INPUT , PLEASE ENTER A NUMBER BETWEEN 1 AND 6 ");
             }
          } catch (InputMismatchException e) {
             System.out.println("PLEASE ENTER A DIGIT");

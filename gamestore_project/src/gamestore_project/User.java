@@ -92,6 +92,7 @@ public class User {
 	 * } }
 	 */
 	public void removeGameFromLibrary(String name) {
+		if(findGame(name)!=null){
 		System.out.println(
 				"\n the game is not refundable, once you remove a game you will lose access to it unless you buy it again..\n");
 		System.out.println("\n do you want to proceed?...\n enter: \n \"y\"- yes, \"n\"- no \n");
@@ -103,16 +104,11 @@ public class User {
 					gameLibrary[i] = gameLibrary[numberOfGames - 1];
 					gameLibrary[--numberOfGames] = null;
 					System.out.println(name + " WAS REMOVED SUCCESSFULLY");
-					return;
 				}
-
 			}
-			System.out.println(name + " DOESN'T EXIST IN YOUR LIBRARY");
-			return;
-
 		}
-		return;
-	}
+	}		
+  }
 
 	public Game findGame(String name) {
 		for (int i = 0; i < numberOfGames; i++) {
@@ -125,8 +121,19 @@ public class User {
 		}
 		System.out.println(name + " DOESN'T EXIST IN YOUR LIBRARY");
 		return null; // if game is not found
-
 	}
+
+
+	public void displayMyLibrary(){
+		if(numberOfGames!=0){
+			System.out.println("\nTHESE ARE YOUR LIBRARY'S GAMES: \n ");
+			for (int i = 0; i < numberOfGames; i++)
+				System.out.println(gameLibrary[i]);
+		}
+		else
+		   System.out.println("\nYOU DON'T HAVE ANY GAMES, YOUR LIBRARY IS EMPTY.");
+	}
+
 
 	public String getUsername() {
 		return username;

@@ -152,25 +152,20 @@ public class GameStoreDemo {
                         break;
 
                     case 5:
-                        System.out.println("\nTHESE ARE YOUR LIBRARY'S GAMES: \n ");
-                        Game[] library = (GEA.findUser(name)).getGameLibrary();
-                        for (int i = 0; i < (GEA.findUser(name)).getNumberOfGames(); i++)
-                            System.out.println(library[i]);
+                    (GEA.findUser(name)).displayMyLibrary();
                         break;
 
                     case 6:
                         GEA.displayGames();
                         break;
 
-                        case 7:
-                    
+                    case 7:
                         System.out.println( GEA.findUser(name));
                         break;
 
                     case 0:
-
-                        break;
                     }
+                    
                 } while (choice != 0);
 
             } else if (check == 2) {
