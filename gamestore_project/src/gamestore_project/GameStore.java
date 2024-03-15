@@ -4,16 +4,18 @@ import java.util.Scanner;
 import java.util.InputMismatchException;
 
 public class GameStore {
+   // GameStore is the fundamental class that deals with Games, Users, and Admins,
+   // and handles the store's operations
    Scanner sc = new Scanner(System.in);
-   private String name;
-   private User[] userList;
-   private Game[] gameList;
-   private Admin[] adminList = new Admin[3];
 
+   private String name; 
+   private User[] userList; 
+   private Game[] gameList; 
+   private Admin[] adminList = new Admin[3];
    private int noUsers;
    private int noGames;
 
-   public GameStore(String name, Admin a1, Admin a2, Admin a3, int Usize, int Gsize) {
+   public GameStore(String name, Admin a1, Admin a2, Admin a3, int Usize, int Gsize) { //parametrized constructor that initialises the attributes
       this.name = name;
       adminList[0] = a1;
       adminList[1] = a2;
@@ -24,10 +26,10 @@ public class GameStore {
       gameList = new Game[Gsize];
    }
 
-   public boolean userExists(String user) {
+   public boolean userExists(String user) {  //checks if there is a user with the received username 
       for (int i = 0; i < noUsers; i++) {
 
-         if (userList[i].getUsername().equalsIgnoreCase(user)) { // to check the uniqness of username.
+         if (userList[i].getUsername().equalsIgnoreCase(user)) { // to check the uniqueness of username
             System.out.println("THE USERNAME ALREADY EXISTS");
             return true;
          }
@@ -35,9 +37,9 @@ public class GameStore {
       return false;
    }
 
-   public boolean addUser(User u) {
-      if (!userExists(u.getUsername())) {
-         if (noUsers < userList.length) {
+   public boolean addUser(User u) {      //this method adds a user to the userlist if and only if:
+      if (!userExists(u.getUsername())) {// 1- the username doesn't already exist in the gamestore
+         if (noUsers < userList.length) {// 2- the userlist is not full
             userList[noUsers++] = u;
             return true;
          } else
@@ -49,24 +51,24 @@ public class GameStore {
       }
    }
 
-   public void removeUser(String username) {
-      boolean exist = false;
-      int i;
+   public void removeUser(String username) {//this method removes a user from the userlist if and only if:
+      boolean exist = false;                 //the user with the given name exists in the userlist
+      int i;                                 
       for (i = 0; i < noUsers; i++)
          if (userList[i].getUsername().equalsIgnoreCase(username)) {
             exist = true;
             break;
          }
       if (exist) {
-         userList[i] = userList[noUsers - 1];
-         userList[noUsers - 1] = null;
+         userList[i] = userList[noUsers - 1]; //remove the user by replacing with the last user in userlist
+         userList[noUsers - 1] = null; 
          noUsers--;
          System.out.println("THE USER \"" + username + "\" WAS REMOVED SUCCESSFULLY");
       } else
          System.out.println("FAILED TO REMOVE THE USER, CAN NOT FIND A USER WITH THIS NAME: \"" + username + "\"");
    }
 
-   public User findUser(String username) {
+   public User findUser(String username) {//this method returns a user if it was found in the userlist
       for (int i = 0; i < noUsers; i++)
          if (userList[i].getUsername().equalsIgnoreCase(username))
             return userList[i];
@@ -75,48 +77,45 @@ public class GameStore {
 
    }
 
-   public boolean adminExists() {
-      boolean adminExist = false;
-      int i, numOfTry = 0;
+   public boolean adminExists() {//this method verifies admin's username and password, and allows the user to go back to the main menu 
+      boolean adminExist = false;//there is a limit for incorrect login attempts 
+      int i, numOfAttempts = 0;
       String name;
       boolean back = false;
 
       do {
 
          System.out.println("\n PLEASE ENTER YOUR NAME \n OR 0 TO GO BACK :");
-         name = sc.next();
-         sc.nextLine();
-         if (!name.equals("0")) {
-            for (i = 0; i < adminList.length; i++)
-               if (adminList[i].getUsername().equalsIgnoreCase(name)) {
+         name = sc.nextLine();
+         if (!name.equals("0")) {        //we use the user input in the variable (name) as a back button if  
+            for (i = 0; i < adminList.length; i++) //the input was zero
+               if (adminList[i].getUsername().equalsIgnoreCase(name)) { //if the entered username exists in adminlist, then the admin exists
                   adminExist = true;
                   break;
                }
-            if (!adminExist) {
+            if (!adminExist) { //if not, it will print a message
                System.out.println(" INCORRECT USERNAME, PLEASE TRY AGAIN");
-               numOfTry++;
+               numOfAttempts++;
                continue;
-            } else {
+            } else { //this will check the password after verifying that the admin exists
                System.out.println("\n WELCOME BACK!, PLEASE ENTER YOUR PASSWORD");
                String password = sc.nextLine();
                if (adminList[i].getPassword().equals(password))
-                  break;
+                  break; //this will stop the verification loop
                else {
                   System.out.println("INCORRECT PASSWORD");
-                  {
-                     numOfTry++;
+                     numOfAttempts++;
                      adminExist = false;
-                  }
                }
 
             }
-         } else
+         } else //if name equals "0"
             back = true;
-      } while (!adminExist && numOfTry < 3 && back == false);
-      if (adminExist) {
+      } while (!adminExist && numOfAttempts < 3 && back == false); //the loop will stop if the admin's info was correct
+      if (adminExist) {                                           // or attempts >= 3 or "back" was true (user entered 0)
          System.out.print(" HELLO ADMIN " + name + " :)");
          return true;
-      } else if (numOfTry >= 3) {
+      } else if (numOfAttempts >= 3) {
          System.out.println("\n SORRY YOU HAVE EXCEEDED THE NUMBER OF ALLOWABLE ATTEMPTS :(");
          return false;
       }
@@ -124,7 +123,7 @@ public class GameStore {
 
    }
 
-   public boolean gameExists(String name) {
+   public boolean gameExists(String name) { //check if game exists in the store
       for (int i = 0; i < noGames; i++) {
          if (gameList[i].getName().equalsIgnoreCase(name))
             return true;
@@ -133,7 +132,8 @@ public class GameStore {
 
    }
 
-   public boolean addGame(Game g) {
+   public boolean addGame(Game g) { //adds a game and casts it to its genre if 
+                                    //the gamelist wasn't full
       if (noGames < gameList.length) {
          if (g instanceof Detective) {
             gameList[noGames++] = new Detective(g);
@@ -168,15 +168,15 @@ public class GameStore {
 
    }
 
-   public void removeGame(String name) {
+   public void removeGame(String name) { //this method removes a game from the store
       boolean exist = false;
       int i;
-      for (i = 0; i < noGames; i++)
+      for (i = 0; i < noGames; i++) //check if game exists
          if (gameList[i].getName().equalsIgnoreCase(name)) {
             exist = true;
             break;
          }
-      if (exist) {
+      if (exist) { //if it exists, remove it 
          gameList[i] = gameList[noGames - 1];
          gameList[noGames - 1] = null;
          noGames--;
@@ -186,7 +186,7 @@ public class GameStore {
          System.out.println("\nFAILED TO REMOVE THE GAME, CAN NOT FIND A GAME WITH THIS NAME: \"" + name + "\"");
    }
 
-   public Game searchForGame(String name) {
+   public Game searchForGame(String name) { //this method returns the game that has the recieved name
 
       for (int i = 0; i < noGames; i++)
          if (gameList[i].getName().equalsIgnoreCase(name))
@@ -196,7 +196,7 @@ public class GameStore {
       return null;
 
    }
-
+   //getters
    public Game[] getGameList() {
       return gameList;
    }
@@ -208,7 +208,7 @@ public class GameStore {
    public int getNoUsers() {
       return noUsers;
    }
-
+   //these methods return a gamelist of the specified genre
    public Game[] getRPG() {
       int RPGcount = 0, index = 0;
       for (int i = 0; i < noGames; i++) {
@@ -293,14 +293,14 @@ public class GameStore {
       return adminList;
    }
 
-   public void displayAllGames() {
+   public void displayAllGames() { //this method displays all games in gamestore
       System.out.println("\nTHESE ARE ALL THE GAMES IN " + name + " STORE:\n-------------- \n");
       for (int i = 0; i < noGames; i++)
          System.out.println(gameList[i]);
 
    }
 
-   public void displayGames() {
+   public void displayGames() { //this method allows the user to display all games or games of a specific genre
       System.out.println("CHOOSE WHAT DO YOU WANT TO DISPLAY?");
       int selection = 0;
       do {
@@ -361,7 +361,7 @@ public class GameStore {
       }
    }
 
-   public void displayAllUsers() {
+   public void displayAllUsers() { //this method displays all users of gamestore
       for (int i = 0; i < noUsers; i++) {
          System.out.println("\n " + userList[i].toString());
 

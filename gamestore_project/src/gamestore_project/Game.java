@@ -28,7 +28,7 @@ public abstract class Game {
 		return price;
 	}
 
-	public String toString() { // a toString (overridden) method that will print the game's info
+	public String toString() { // a toString (overridden) method that will return the game's info
 		String sPrice = priceAfterDiscount() + "";
 		return "\n ~*~*~*~*~*~*~*~*~*~*~*~*~*~*~ \n GAME NAME: " + name + "\n GAME PUBLISHER: " + publisher
 				+ "\n GAME PRICE: " + price + "\n PRICE AFTER DISCOUNT: "
